@@ -1,0 +1,2037 @@
+/* ============================================
+   JOURNEY.CSS - COMPLETE REBUILD
+   Interactive Documentary | One Continuous Canvas
+   Stop-Motion Aesthetics | Premium Digital Scrapbook
+   ============================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Lato:wght@300;400;700&family=Reenie+Beanie&display=swap");
+
+/* ============================================
+   VARIABLES
+   ============================================ */
+:root {
+    --c-dark: #003631;
+    --c-butter: #FFEDA8;
+    --c-paper: #fffef7;
+    --c-aged: #d4c19c;
+    --c-brick: #8b4c39;
+    --c-brown: #5d4037;
+    --c-grey: #6d6d6d;
+    --c-green: #7a8c5e;
+
+    --c-yellow-sticky: #fff740;
+    --c-pink-sticky: #ff6b9d;
+    --c-green-sticky: #c1ff72;
+    --c-blue-sticky: #00d4ff;
+    --c-orange-sticky: #ffaa00;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    overflow-x: hidden;
+    background: var(--c-butter);
+}
+
+/* ============================================
+   LOADING SCREEN
+   ============================================ */
+.loading-screen {
+    position: fixed;
+    inset: 0;
+    background: var(--c-butter);
+    background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.02) 2px, rgba(0, 0, 0, 0.02) 4px),
+        repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 0, 0, 0.02) 2px, rgba(0, 0, 0, 0.02) 4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.loading-text {
+    font-family: "Reenie Beanie", cursive;
+    font-size: 3.5rem;
+    color: var(--c-dark);
+    margin-bottom: 2rem;
+}
+
+.loading-bar {
+    width: 300px;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 0 auto 1rem;
+}
+
+.loading-fill {
+    height: 100%;
+    background: var(--c-dark);
+    transition: width 0.3s ease;
+    border-radius: 20px;
+}
+
+.loading-percentage {
+    font-family: "Lato", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--c-dark);
+}
+
+/* ============================================
+   MAIN CANVAS - ONE CONTINUOUS CONTAINER
+   ============================================ */
+.story-canvas {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--c-butter);
+    background-image: url("../assets/img/scramble.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
+    /* Blend scramble with butter color */
+    color: var(--c-dark);
+    position: relative;
+    padding: 0;
+}
+
+/* ============================================
+   BEAT STRUCTURE - FLEXIBLE HEIGHT
+   ============================================ */
+.beat {
+    padding: 10rem 4rem;
+    position: relative;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    will-change: opacity, transform;
+}
+
+.beat-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.beat-title.handwritten {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 3.5rem;
+}
+
+.beat-caption {
+    font-family: "Lato", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    text-align: center;
+    color: var(--c-dark);
+    margin-top: 3rem;
+    line-height: 1.8;
+}
+
+.beat-caption.handwritten {
+    font-family: "Reenie Beanie", cursive;
+    font-size: 2.2rem;
+    line-height: 1.6;
+}
+
+.beat-caption.big {
+    font-size: 2.5rem;
+}
+
+.beat-caption.final {
+    font-size: 2.8rem;
+    margin-top: 5rem;
+}
+
+/* ============================================
+   BEAT 1: COVER
+   ============================================ */
+.beat-1 {
+    min-height: 90vh;
+    justify-content: center;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    position: relative;
+    overflow: visible;
+}
+
+.beat-1-sun {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 110px;
+    height: auto;
+    z-index: 25;
+    pointer-events: none;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* ============================================
+   BRIDGE 1: WASHI TAPE DIVIDER
+   ============================================ */
+.bridge-page-divider-1 {
+    width: 100%;
+    position: relative;
+    z-index: 5;
+    /* Lower than palm trees */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin-top: 50px;
+    /* Push down below palm trees */
+    margin-bottom: -30px;
+    overflow: visible;
+}
+
+.washi-tape {
+    width: 100%;
+    height: 60px;
+    position: relative;
+    background: linear-gradient(135deg,
+            rgba(58, 139, 140, 0.85) 0%,
+            rgba(42, 112, 113, 0.85) 50%,
+            rgba(58, 139, 140, 0.85) 100%);
+    /* Diagonal stripe pattern for washi tape texture */
+    background-image:
+        repeating-linear-gradient(45deg,
+            transparent,
+            transparent 10px,
+            rgba(255, 255, 255, 0.08) 10px,
+            rgba(255, 255, 255, 0.08) 20px),
+        linear-gradient(135deg,
+            rgba(58, 139, 140, 0.9) 0%,
+            rgba(42, 112, 113, 0.9) 50%,
+            rgba(58, 139, 140, 0.9) 100%);
+    transform: rotate(-0.5deg);
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.15),
+        0 4px 16px rgba(0, 0, 0, 0.1);
+    /* Torn/rough edges effect */
+    clip-path: polygon(0% 5%, 3% 0%, 8% 4%, 15% 1%, 22% 5%, 30% 2%,
+            38% 6%, 45% 1%, 52% 4%, 60% 0%, 68% 5%, 75% 2%,
+            82% 6%, 90% 1%, 95% 4%, 100% 2%,
+            100% 95%, 97% 100%, 92% 96%, 85% 99%, 78% 95%, 70% 98%,
+            62% 94%, 55% 99%, 48% 96%, 40% 100%, 32% 95%, 25% 98%,
+            18% 94%, 10% 99%, 5% 96%, 0% 98%);
+}
+
+.washi-tape::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(90deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 255, 255, 0.03) 2px,
+            rgba(255, 255, 255, 0.03) 4px);
+    pointer-events: none;
+}
+
+/* Hide the old image divider */
+.page-divider-img {
+    display: none;
+}
+
+.beat-1-palm-left {
+    position: absolute;
+    bottom: -70vh;
+    left: -28vw;
+    height: 180vh;
+    width: auto;
+    z-index: 5;
+    pointer-events: none;
+    transform-origin: bottom center;
+}
+
+.beat-1-palm-right-wrapper {
+    position: absolute;
+    bottom: -70vh;
+    right: -28vw;
+    height: 180vh;
+    width: auto;
+    z-index: 5;
+    pointer-events: none;
+    transform: scaleX(-1);
+    transform-origin: bottom center;
+}
+
+/* Image inside wrapper getting animated */
+.beat-1-palm-right-img {
+    height: 100%;
+    width: auto;
+    display: block;
+    transform-origin: bottom center;
+}
+
+.grain-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2' numOctaves='5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.1'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+}
+
+.beat-1-title {
+    font-family: "Playfair Display", serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--c-dark);
+    text-align: center;
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+    z-index: 10;
+    position: relative;
+}
+
+.beat-1-title-char {
+    display: inline-block;
+    will-change: opacity, transform;
+}
+
+.beat-1-hero-container {
+    max-width: 650px;
+    width: 85%;
+    position: relative;
+    z-index: 10;
+}
+
+.beat-1-hero-img {
+    position: relative;
+    background: #fff;
+    padding: 2rem;
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+    will-change: transform, opacity;
+    margin: 0 auto;
+    overflow: visible;
+    border-radius: 8px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.frame-content {
+    flex: 1;
+    background: linear-gradient(180deg, #fffef7 0%, #fff9e6 100%);
+    border: 2px solid rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+}
+
+.polaroid-caption {
+    position: relative;
+    width: 100%;
+    padding: 1.5rem 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.date-text {
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--c-dark);
+    letter-spacing: 0.5px;
+}
+
+
+
+/* ============================================
+   BRIDGE ELEMENTS
+   ============================================ */
+
+.bridge-footprints {
+    height: 200px;
+    width: 100%;
+    position: relative;
+    background: linear-gradient(180deg, var(--c-butter) 0%, #e8d9b8 100%);
+}
+
+.footprint {
+    position: absolute;
+    font-size: 3rem;
+    opacity: 0.5;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+    will-change: transform, opacity;
+}
+
+.bridge-rafia {
+    height: 8px;
+    width: 80%;
+    margin: 4rem auto;
+    background: repeating-linear-gradient(90deg,
+            #d4a574 0px,
+            #d4a574 15px,
+            #c9985d 15px,
+            #c9985d 30px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    position: relative;
+    will-change: transform;
+}
+
+.bridge-mud {
+    height: 150px;
+    width: 100%;
+    position: relative;
+    background: linear-gradient(180deg, var(--c-butter) 0%, #d9c89e 100%);
+}
+
+.mud-splash {
+    position: absolute;
+    background: radial-gradient(circle, rgba(93, 64, 55, 0.3) 0%, rgba(93, 64, 55, 0.1) 70%, transparent 100%);
+    border-radius: 50%;
+    filter: blur(2px);
+    will-change: transform, opacity;
+}
+
+.bridge-torn {
+    height: 180px;
+    width: 100%;
+    position: relative;
+    background: var(--c-butter);
+}
+
+.torn-piece {
+    position: absolute;
+    background: #fff;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.15);
+    opacity: 0.8;
+    will-change: transform, opacity;
+}
+
+.bridge-marker {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marker-line {
+    width: 70%;
+    height: 6px;
+    background: var(--c-dark);
+    opacity: 0.4;
+    border-radius: 3px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    will-change: transform;
+}
+
+/* ============================================
+   BEAT 2: ALOKASI PETUGAS
+   ============================================ */
+.beat-2 {
+    background-color: var(--c-dark);
+    min-height: 100vh;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+    background-image: url("../assets/img/scramble.png");
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.beat-2 .beat-title {
+    color: var(--c-paper);
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    z-index: 30;
+    position: relative;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.beat-2-map-viz {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.map-sumatera {
+    width: auto;
+    height: 75%;
+    max-width: 100%;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+    z-index: 5;
+}
+
+.map-location {
+    position: absolute;
+    z-index: 8;
+}
+
+/* Pin Positioning on Map */
+.loc-aceh {
+    top: 20%;
+    left: 20%;
+}
+
+.loc-sumut {
+    top: 30%;
+    left: 33%;
+}
+
+.loc-sumbar {
+    bottom: 43%;
+    left: 45%;
+}
+
+.loc-pin {
+    width: 35px;
+    height: auto;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+    position: relative;
+    z-index: 9;
+}
+
+/* Planes */
+.loc-plane {
+    position: absolute;
+    width: 70px;
+    height: auto;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+    z-index: 7;
+}
+
+.plane-aceh {
+    top: 90px;
+    left: -180px;
+    transform: rotate(-20deg);
+}
+
+.plane-sumut {
+    top: -40px;
+    right: -180px;
+    transform: scaleX(-1) rotate(-10deg);
+}
+
+.plane-sumbar {
+    bottom: -100px;
+    right: 140px;
+    transform: rotate(-25deg);
+}
+
+/* Flight Paths */
+.flight-path {
+    position: absolute;
+    width: 100px;
+    height: auto;
+    pointer-events: none;
+    z-index: 6;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+}
+
+.path-aceh {
+    top: 10px;
+    left: -100px;
+    transform: rotate(30deg);
+}
+
+.path-sumut {
+    top: -50px;
+    right: -100px;
+    transform: scaleX(-1) rotate(80deg);
+}
+
+.path-sumbar {
+    bottom: -80px;
+    left: -100px;
+    transform: rotate(20deg);
+}
+
+/* Allocation Labels - Text Outside */
+.allocation-label {
+    position: absolute;
+    z-index: 30;
+    text-align: center;
+    color: var(--c-paper);
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.alloc-region {
+    font-family: "Playfair Display", serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
+}
+
+.alloc-detail {
+    font-family: "Lato", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.label-aceh {
+    top: 50%;
+    left: 5%;
+}
+
+.label-sumut {
+    top: 30%;
+    right: 33%;
+}
+
+.label-sumbar {
+    bottom: 18%;
+    left: 16%;
+}
+
+/* ============================================
+   BEAT 3: KEBERANGKATAN
+   ============================================ */
+.beat-3 {
+    position: relative;
+}
+
+.boarding-pass {
+    width: 750px;
+    max-width: 90%;
+    background: #fff;
+    border-radius: 15px;
+    padding: 3rem;
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
+    margin: 3rem 0;
+    position: relative;
+    z-index: 10;
+    will-change: transform, opacity;
+}
+
+.pass-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+    border-bottom: 2px dashed rgba(0, 0, 0, 0.15);
+    margin-bottom: 2.5rem;
+}
+
+.pass-airline {
+    font-family: "Lato", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--c-dark);
+}
+
+.pass-code {
+    font-family: "Lato", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    color: var(--c-grey);
+    letter-spacing: 2px;
+}
+
+.pass-body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.pass-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.pass-label {
+    font-family: "Lato", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--c-grey);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.pass-value {
+    font-family: "Lato", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--c-dark);
+}
+
+.pass-footer {
+    padding-top: 2rem;
+    border-top: 2px dashed rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.pass-barcode {
+    font-family: "Courier New", monospace;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: var(--c-dark);
+}
+
+.airplane-visual {
+    position: absolute;
+    font-size: 5rem;
+    z-index: 15;
+    filter: drop-shadow(3px 6px 12px rgba(0, 0, 0, 0.3));
+    will-change: transform, opacity;
+}
+
+.luggage-items {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 4rem;
+    z-index: 10;
+    position: relative;
+}
+
+.luggage-item {
+    background: var(--c-paper);
+    padding: 1.5rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    font-family: "Lato", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--c-dark);
+    will-change: transform, opacity;
+}
+
+/* ============================================
+   BEAT 4: PETA POSKO
+   ============================================ */
+.beat-4-posko-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+    max-width: 1300px;
+    width: 100%;
+    margin: 4rem 0;
+    position: relative;
+    z-index: 10;
+}
+
+.posko-card {
+    background: #fff;
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+    text-align: center;
+    position: relative;
+    will-change: transform, opacity;
+}
+
+.posko-pin {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.posko-name {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--c-dark);
+    margin-bottom: 0.8rem;
+}
+
+.posko-location {
+    font-family: "Lato", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--c-grey);
+    margin-bottom: 1rem;
+}
+
+.posko-team {
+    font-family: "Lato", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--c-green);
+}
+
+/* ============================================
+   BEAT 5: CORKBOARD
+   ============================================ */
+.corkboard {
+    width: 100%;
+    max-width: 1400px;
+    height: 900px;
+    background: linear-gradient(135deg, #c8a882 0%, #b89872 100%);
+    border-radius: 20px;
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.35),
+        inset 0 10px 30px rgba(0, 0, 0, 0.15);
+    position: relative;
+    margin: 3rem 0;
+    overflow: hidden;
+}
+
+.cork-item {
+    position: absolute;
+    will-change: transform, opacity;
+}
+
+.photo-note {
+    background: #fff;
+    padding: 1.2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+}
+
+.photo-note img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    margin-bottom: 0.8rem;
+}
+
+.photo-note p {
+    font-family: "Reenie Beanie", cursive;
+    font-size: 1.8rem;
+    color: var(--c-dark);
+    text-align: center;
+}
+
+.sticky-note {
+    padding: 2rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    width: 280px;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sticky-note.yellow {
+    background: var(--c-yellow-sticky);
+}
+
+.sticky-note.pink {
+    background: var(--c-pink-sticky);
+}
+
+.sticky-note.green {
+    background: var(--c-green-sticky);
+}
+
+.sticky-note.blue {
+    background: var(--c-blue-sticky);
+}
+
+.sticky-note.orange {
+    background: var(--c-orange-sticky);
+}
+
+.sticky-note p {
+    font-family: "Reenie Beanie", cursive;
+    font-size: 2rem;
+    line-height: 1.6;
+    color: var(--c-dark);
+}
+
+.pin {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+/* ============================================
+   BEAT 6: FLATLAY TABLE
+   ============================================ */
+.flatlay-table {
+    width: 100%;
+    max-width: 1400px;
+    height: 900px;
+    background: linear-gradient(135deg, #e8dcc8 0%, #d9c9b0 100%);
+    border-radius: 20px;
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.3),
+        inset 0 5px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin: 3rem 0;
+    overflow: hidden;
+}
+
+.flatlay-item {
+    position: absolute;
+    will-change: transform, opacity;
+}
+
+.item-paper {
+    background: #fff;
+    padding: 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 300px;
+}
+
+.paper-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--c-dark);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.paper-lines {
+    font-family: "Courier New", monospace;
+    font-size: 1.3rem;
+    color: rgba(0, 0, 0, 0.2);
+    line-height: 2;
+}
+
+.item-tablet {
+    background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+    width: 320px;
+}
+
+.tablet-screen {
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.app-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.app-name {
+    font-family: "Lato", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--c-dark);
+    margin-bottom: 0.8rem;
+}
+
+.app-status {
+    font-family: "Lato", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--c-grey);
+}
+
+.item-photo {
+    background: #fff;
+    padding: 1.2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.item-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+}
+
+.item-coffee {
+    font-size: 5rem;
+    filter: drop-shadow(3px 6px 12px rgba(0, 0, 0, 0.3));
+}
+
+.item-label {
+    font-family: "Reenie Beanie", cursive;
+    font-size: 1.8rem;
+    color: var(--c-dark);
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.item-notes {
+    background: var(--c-yellow-sticky);
+    padding: 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    width: 280px;
+}
+
+.notes-title {
+    font-family: "Lato", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--c-dark);
+    margin-bottom: 1.2rem;
+}
+
+.notes-list {
+    font-family: "Reenie Beanie", cursive;
+    font-size: 1.8rem;
+    line-height: 1.8;
+    color: var(--c-dark);
+}
+
+.item-clock {
+    font-size: 3.5rem;
+    background: var(--c-dark);
+    color: var(--c-butter);
+    padding: 1.5rem 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   BEAT 7: JOURNEY COLLAGE
+   ============================================ */
+.journey-collage {
+    width: 100%;
+    max-width: 1400px;
+    min-height: 1000px;
+    position: relative;
+    margin: 3rem 0;
+}
+
+.journey-photo {
+    position: absolute;
+    background: #fff;
+    padding: 1.5rem;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    will-change: transform, opacity;
+}
+
+.journey-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+}
+
+.journey-caption {
+    font-family: "Reenie Beanie", cursive;
+    font-size: 1.9rem;
+    color: var(--c-dark);
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* ============================================
+   BEAT 8: DRAGGABLE AREA
+   ============================================ */
+.beat-8-drag-area {
+    width: 100%;
+    max-width: 1400px;
+    height: 900px;
+    background: linear-gradient(135deg, #f5e6d3 0%, #e8d9c0 100%);
+    border-radius: 20px;
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.3),
+        inset 0 8px 25px rgba(0, 0, 0, 0.08);
+    position: relative;
+    margin: 3rem 0;
+    overflow: hidden;
+}
+
+.drag-photo {
+    position: absolute;
+    background: #fff;
+    padding: 1.5rem;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.22);
+    border-radius: 8px;
+    cursor: move;
+    will-change: transform, opacity;
+}
+
+.drag-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    pointer-events: none;
+}
+
+.drag-caption {
+    font-family: "Reenie Beanie", cursive;
+    font-size: 1.8rem;
+    color: var(--c-dark);
+    text-align: center;
+    margin-top: 1rem;
+    pointer-events: none;
+}
+
+/* ============================================
+   BEAT 9: STICKY WALL
+   ============================================ */
+.sticky-wall {
+    width: 100%;
+    max-width: 1400px;
+    height: 1000px;
+    background: linear-gradient(135deg, #e0d5c7 0%, #d4c8ba 100%);
+    border-radius: 20px;
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.3),
+        inset 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin: 3rem 0;
+    overflow: hidden;
+}
+
+.voice-sticky {
+    position: absolute;
+    padding: 2.5rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.22);
+    border-radius: 6px;
+    width: 320px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    will-change: transform, opacity;
+}
+
+.voice-sticky p {
+    font-family: "Reenie Beanie", cursive;
+    font-size: 2.1rem;
+    line-height: 1.6;
+    color: var(--c-dark);
+    margin-bottom: 1.5rem;
+}
+
+.sticky-author {
+    font-family: "Lato", sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.6);
+    text-align: right;
+}
+
+/* ============================================
+   BEAT 10: PHONE DEVICE
+   ============================================ */
+.phone-device {
+    width: 420px;
+    height: 860px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    border-radius: 45px;
+    box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.5),
+        inset 0 2px 8px rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    position: relative;
+    margin: 3rem auto;
+    will-change: transform, opacity;
+}
+
+.phone-notch {
+    width: 180px;
+    height: 35px;
+    background: #000;
+    border-radius: 0 0 25px 25px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+}
+
+.chat-header {
+    background: var(--c-dark);
+    color: #fff;
+    padding: 2.5rem 2rem 1.5rem;
+    border-radius: 25px 25px 0 0;
+    text-align: center;
+    margin-top: 35px;
+}
+
+.chat-title {
+    font-family: "Lato", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.chat-members {
+    font-family: "Lato", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    opacity: 0.7;
+}
+
+.chat-screen {
+    background: #f5f5f5;
+    height: 650px;
+    padding: 2rem 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.chat-bubble {
+    max-width: 75%;
+    padding: 1.2rem 1.6rem;
+    border-radius: 18px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    will-change: transform, opacity;
+}
+
+.chat-bubble.left {
+    background: #fff;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+.chat-bubble.right {
+    background: var(--c-butter);
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+.chat-bubble.system {
+    background: #e8f4f8;
+    align-self: center;
+    max-width: 90%;
+    text-align: center;
+}
+
+.chat-text {
+    font-family: "Lato", sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--c-dark);
+    margin-bottom: 0.5rem;
+}
+
+.chat-time {
+    font-family: "Lato", sans-serif;
+    font-size: 0.85rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.chat-input {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 0 0 25px 25px;
+    text-align: center;
+}
+
+.input-placeholder {
+    font-family: "Lato", sans-serif;
+    font-size: 1.1rem;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================
+   BEAT 11: FASIH DEVICE
+   ============================================ */
+.fasih-device {
+    width: 420px;
+    background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+    border-radius: 35px;
+    box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.45),
+        inset 0 2px 8px rgba(255, 255, 255, 0.08);
+    padding: 2rem;
+    position: relative;
+    margin: 3rem auto;
+    will-change: transform, opacity;
+}
+
+.fasih-screen {
+    background: #fff;
+    border-radius: 25px;
+    padding: 3rem 2.5rem;
+}
+
+.fasih-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.fasih-logo {
+    font-family: "Lato", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--c-dark);
+}
+
+.fasih-battery {
+    font-size: 1.2rem;
+}
+
+.fasih-title {
+    font-family: "Playfair Display", serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--c-dark);
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.beat-11-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.metric-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    will-change: transform, opacity;
+}
+
+.metric-label {
+    font-family: "Lato", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--c-dark);
+    min-width: 100px;
+}
+
+.progress-bar-container {
+    flex: 1;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    will-change: transform;
+}
+
+.progress-bar-fill.green {
+    background: linear-gradient(90deg, #4caf50 0%, #66bb6a 100%);
+}
+
+.progress-bar-fill.blue {
+    background: linear-gradient(90deg, #2196f3 0%, #42a5f5 100%);
+}
+
+.progress-bar-fill.red {
+    background: linear-gradient(90deg, #f44336 0%, #ef5350 100%);
+}
+
+.progress-bar-fill.yellow {
+    background: linear-gradient(90deg, #ffc107 0%, #ffca28 100%);
+}
+
+.metric-value {
+    font-family: "Lato", sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--c-dark);
+    min-width: 100px;
+    text-align: right;
+}
+
+.fasih-summary {
+    font-family: "Lato", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--c-grey);
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 2px solid rgba(0, 0, 0, 0.08);
+    line-height: 1.6;
+}
+
+/* ============================================
+   BEAT 12: HEALTH SECTION
+   ============================================ */
+.health-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    max-width: 1100px;
+    width: 100%;
+    margin: 3rem 0;
+}
+
+.medicine-row {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.medicine-box {
+    background: #fff;
+    padding: 2.5rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
+    text-align: center;
+    min-width: 180px;
+    will-change: transform, opacity;
+}
+
+.medicine-box.alert {
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    border: 2px solid #f44336;
+}
+
+.box-label {
+    font-family: "Lato", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--c-dark);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.box-stock {
+    font-family: "Lato", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--c-grey);
+}
+
+.medicine-box.alert .box-stock {
+    color: #f44336;
+    font-weight: 700;
+}
+
+.beat-12-chart {
+    background: #fff;
+    padding: 3.5rem 3rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+}
+
+.chart-title {
+    font-family: "Playfair Display", serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--c-dark);
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.health-bars {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    gap: 3rem;
+    height: 350px;
+}
+
+.health-bar-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1;
+}
+
+.health-bar {
+    width: 100%;
+    max-width: 120px;
+    background: linear-gradient(180deg, var(--c-dark) 0%, var(--c-green) 100%);
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.15);
+    will-change: transform;
+}
+
+.bar-label {
+    font-family: "Lato", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--c-dark);
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* ============================================
+   BEAT 13: POLAROID PILE
+   ============================================ */
+.polaroid-pile {
+    width: 100%;
+    max-width: 800px;
+    height: 700px;
+    position: relative;
+    margin: 3rem 0;
+}
+
+.polaroid-card {
+    position: absolute;
+    background: #fff;
+    padding: 1.8rem 1.8rem 4rem;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    will-change: transform, opacity;
+}
+
+.polaroid-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+.polaroid-caption {
+    font-family: "Reenie Beanie", cursive;
+    font-size: 2.2rem;
+    color: var(--c-dark);
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+/* ============================================
+   BEAT 14: ENVELOPE & LETTER
+   ============================================ */
+.envelope-wrapper {
+    position: relative;
+    width: 750px;
+    height: 700px;
+    margin-bottom: 3rem;
+}
+
+.envelope {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 450px;
+    background: linear-gradient(135deg, #c8a882 0%, #b89872 100%);
+    border-radius: 6px;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.35);
+    z-index: 3;
+    will-change: transform, opacity;
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 375px solid transparent;
+    border-right: 375px solid transparent;
+    border-top: 260px solid #b08860;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+    z-index: 5;
+    transform-origin: bottom center;
+    will-change: transform;
+}
+
+.letter-paper {
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 650px;
+    background: var(--c-paper);
+    padding: 4rem 3.5rem;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    z-index: 4;
+    will-change: transform, opacity;
+}
+
+.letter-heading {
+    font-family: "Playfair Display", serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--c-dark);
+    margin-bottom: 3rem;
+}
+
+.letter-content {
+    font-family: "Reenie Beanie", cursive;
+    font-size: 2.2rem;
+    line-height: 1.8;
+    color: var(--c-dark);
+    margin: 2.5rem 0;
+}
+
+.letter-signature {
+    font-family: "Reenie Beanie", cursive;
+    font-size: 3rem;
+    color: var(--c-dark);
+    margin-top: 3.5rem;
+    line-height: 1.5;
+}
+
+.wax-seal {
+    position: absolute;
+    bottom: -35px;
+    right: -45px;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at 42% 42%, #b71c1c, #8e0000);
+    border-radius: 50%;
+    border: 7px solid rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        5px 5px 15px rgba(0, 0, 0, 0.5),
+        inset -4px -4px 12px rgba(0, 0, 0, 0.4);
+    z-index: 20;
+    will-change: transform, opacity;
+}
+
+.seal-number {
+    color: #fff;
+    font-family: "Playfair Display", serif;
+    font-weight: 900;
+    font-size: 4rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* ============================================
+   BEAT 15: PESAN PENUTUP
+   ============================================ */
+.beat-15 {
+    min-height: 100vh;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--c-butter) 0%, #f5e6c8 100%);
+}
+
+.closing-text {
+    max-width: 900px;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.final-quote {
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.6;
+    color: var(--c-dark);
+    margin-bottom: 3rem;
+    font-style: italic;
+    will-change: transform, opacity;
+}
+
+.final-credit {
+    font-family: "Lato", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--c-grey);
+    will-change: transform, opacity;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.story-navigation {
+    position: fixed;
+    bottom: 3rem;
+    right: 3rem;
+    display: flex;
+    gap: 1.5rem;
+    z-index: 1000;
+}
+
+.nav-btn {
+    background: var(--c-dark);
+    color: var(--c-butter);
+    padding: 1.5rem 3rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+}
+
+.nav-btn.back {
+    background: #fff;
+    color: var(--c-dark);
+}
+
+.nav-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+}
+
+.handwritten,
+.photo-note,
+.drag-caption,
+.sticky-note {
+    font-size: 1.2rem;
+    opacity: 0.85;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+    .beat {
+        padding: 6rem 2rem;
+    }
+
+    .beat-title {
+        font-size: 5rem;
+    }
+
+    .beat-title.handwritten {
+        font-size: 4rem;
+    }
+
+    .beat-1-title {
+        font-size: 4rem;
+    }
+
+    .beat-2 {
+        padding: 4rem 1.5rem;
+    }
+
+    .beat-2 .beat-title {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .beat-2-map-viz {
+        max-width: 700px;
+        height: 500px;
+    }
+
+    .map-sumatera {
+        height: 65%;
+    }
+
+    .loc-pin {
+        width: 28px;
+    }
+
+    .loc-plane {
+        width: 55px;
+    }
+
+    .plane-aceh {
+        left: -120px;
+    }
+
+    .plane-sumut {
+        right: -110px;
+    }
+
+    .plane-sumbar {
+        right: -105px;
+    }
+
+    .flight-path {
+        width: 150px;
+    }
+
+    .path-aceh {
+        left: -130px;
+    }
+
+    .path-sumut {
+        right: -120px;
+    }
+
+    .path-sumbar {
+        right: -115px;
+    }
+
+    .alloc-region {
+        font-size: 1.4rem;
+    }
+
+    .alloc-detail {
+        font-size: 1rem;
+    }
+
+    .label-aceh {
+        left: 5%;
+    }
+
+    .label-sumut {
+        right: 5%;
+    }
+
+    .label-sumbar {
+        right: 6%;
+    }
+
+    .beat-4-posko-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .corkboard {
+        height: 1200px;
+    }
+
+    .flatlay-table,
+    .beat-8-drag-area,
+    .sticky-wall {
+        height: 1200px;
+    }
+
+    .journey-collage {
+        min-height: 1200px;
+        height: auto;
+    }
+
+    .polaroid-pile {
+        height: 1100px;
+    }
+
+    .envelope-wrapper {
+        width: 600px;
+    }
+
+    .envelope-flap {
+        border-left-width: 300px;
+        border-right-width: 300px;
+    }
+
+    .letter-paper {
+        width: 520px;
+        padding: 3rem 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .beat {
+        padding: 4rem 1.5rem;
+    }
+
+    .beat-title {
+        font-size: 2.5rem;
+    }
+
+    .beat-title.handwritten {
+        font-size: 3.5rem;
+    }
+
+    .beat-1-title {
+        font-size: 3rem;
+    }
+
+    .beat-2 {
+        padding: 3rem 1rem;
+    }
+
+    .beat-2 .beat-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .beat-2-map-viz {
+        max-width: 100%;
+        height: 400px;
+    }
+
+    .map-sumatera {
+        height: 55%;
+    }
+
+    .loc-pin {
+        width: 22px;
+    }
+
+    .loc-plane {
+        width: 45px;
+    }
+
+    .plane-aceh {
+        left: -90px;
+    }
+
+    .plane-sumut {
+        right: -85px;
+    }
+
+    .plane-sumbar {
+        right: -80px;
+    }
+
+    .flight-path {
+        width: 120px;
+    }
+
+    .path-aceh {
+        left: -100px;
+    }
+
+    .path-sumut {
+        right: -95px;
+    }
+
+    .path-sumbar {
+        right: -90px;
+    }
+
+    .allocation-label {
+        text-align: left;
+    }
+
+    .alloc-region {
+        font-size: 1.1rem;
+    }
+
+    .alloc-detail {
+        font-size: 0.85rem;
+    }
+
+    .label-aceh {
+        top: 8%;
+        left: 2%;
+    }
+
+    .label-sumut {
+        top: 4%;
+        right: 2%;
+    }
+
+    .label-sumbar {
+        bottom: 8%;
+        right: 3%;
+    }
+
+    .beat-caption {
+        font-size: 1.1rem;
+    }
+
+    .beat-caption.handwritten {
+        font-size: 1.8rem;
+    }
+
+    .boarding-pass {
+        padding: 2rem;
+    }
+
+    .beat-4-posko-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .corkboard,
+    .flatlay-table,
+    .journey-collage,
+    .beat-8-drag-area,
+    .sticky-wall {
+        height: auto;
+        padding: 2rem;
+    }
+
+    .cork-item,
+    .flatlay-item,
+    .journey-photo,
+    .drag-photo,
+    .voice-sticky {
+        position: static !important;
+        margin-bottom: 2rem;
+        transform: none !important;
+    }
+
+    .phone-device {
+        width: 100%;
+        max-width: 380px;
+        height: 780px;
+    }
+
+    .health-section {
+        gap: 2.5rem;
+    }
+
+    .medicine-row {
+        gap: 1.5rem;
+    }
+
+    .polaroid-pile {
+        height: auto;
+    }
+
+    .polaroid-card {
+        position: static !important;
+        margin-bottom: 2rem;
+        transform: none !important;
+        left: auto !important;
+        top: auto !important;
+    }
+
+    .envelope-wrapper {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+    }
+
+    .envelope {
+        height: 380px;
+    }
+
+    .envelope-flap {
+        border-left-width: 250px;
+        border-right-width: 250px;
+        border-top-width: 220px;
+    }
+
+    .letter-paper {
+        width: 90%;
+        padding: 2.5rem 2rem;
+    }
+
+    .letter-heading {
+        font-size: 2.5rem;
+    }
+
+    .letter-content {
+        font-size: 1.8rem;
+    }
+
+    .final-quote {
+        font-size: 2.2rem;
+    }
+
+    .nav-btn {
+        padding: 1.2rem 2rem;
+        font-size: 1rem;
+    }
+
+    .story-navigation {
+        bottom: 2rem;
+        right: 2rem;
+        gap: 1rem;
+    }
+}
