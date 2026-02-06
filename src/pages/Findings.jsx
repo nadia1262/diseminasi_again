@@ -337,16 +337,40 @@ function Findings() {
   // Register GSAP plugins and initialize ScrollSmoother
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-    
+
     // Initialize ScrollSmoother for smooth scrolling
     const smoother = ScrollSmoother.create({
       smooth: 2,
       effects: true,
     });
 
+    // Color transition from hero to facts section
+    if (heroSection.current && factsSection.current) {
+      gsap.to(heroSection.current, {
+        scrollTrigger: {
+          trigger: heroSection.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1,
+          onUpdate: (self) => {
+            const progress = self.progress;
+            const startColor = { r: 255, g: 237, b: 168 };
+            const endColor = { r: 0, g: 54, b: 49 };
+
+            const r = Math.round(startColor.r + (endColor.r - startColor.r) * progress);
+            const g = Math.round(startColor.g + (endColor.g - startColor.g) * progress);
+            const b = Math.round(startColor.b + (endColor.b - startColor.b) * progress);
+
+            heroSection.current.style.background = `linear-gradient(135deg, rgb(${r}, ${g}, ${b}) 0%, rgb(${Math.round(r * 0.9)}, ${Math.round(g * 0.9)}, ${Math.round(b * 0.9)}) 100%)`;
+          }
+        }
+      });
+    }
+
     return () => {
       // Cleanup on unmount
       smoother?.kill();
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
@@ -933,46 +957,41 @@ function Findings() {
   useEffect(() => {
     if (!titleRef.current) return;
 
-    // Animate title with scrapbook style
+    // Animate title with stunning entrance
     gsap.fromTo(
       titleRef.current,
       {
         opacity: 0,
-        scale: 0.8,
-        rotation: -5,
-        y: 50
+        scale: 0.5,
+        rotation: -10,
+        y: 100
       },
       {
         opacity: 1,
         scale: 1,
         rotation: 0,
         y: 0,
-        duration: 1.2,
-        ease: 'back.out',
-        delay: 0.3,
-        scrollTrigger: {
-          trigger: heroSection.current,
-          start: 'top center',
-          toggleActions: 'play none none reverse'
-        }
+        duration: 1.5,
+        ease: 'elastic.out(1, 0.8)',
+        delay: 0.2
       }
     );
 
-    // Animate decorative elements with stop-motion effect
+    // Animate decorative elements with floating effect
     Object.entries(decorElements.current).forEach(([key, el], index) => {
       if (!el) return;
-      
-      const randomRotation = Math.random() * 8 - 4;
-      const randomScale = 0.8 + Math.random() * 0.4;
-      
+
+      const randomRotation = Math.random() * 20 - 10;
+      const randomScale = 0.9 + Math.random() * 0.3;
+
       gsap.fromTo(
         el,
         {
           opacity: 0,
-          scale: 0.5,
-          rotation: randomRotation - 15,
-          x: Math.random() * 100 - 50,
-          y: Math.random() * 100 - 50
+          scale: 0.3,
+          rotation: randomRotation * 2,
+          x: (Math.random() - 0.5) * 200,
+          y: (Math.random() - 0.5) * 200
         },
         {
           opacity: 0.7,
@@ -980,20 +999,27 @@ function Findings() {
           rotation: randomRotation,
           x: 0,
           y: 0,
-          duration: 1.5,
-          delay: 0.1 + index * 0.15,
-          ease: 'elastic.out(1, 0.6)',
-          scrollTrigger: {
-            trigger: heroSection.current,
-            start: 'top center',
-            toggleActions: 'play none none reverse'
-          }
+          duration: 2,
+          delay: 0.4 + index * 0.2,
+          ease: 'elastic.out(1, 0.5)'
         }
       );
+
+      // Add floating animation
+      gsap.to(el, {
+        y: '+=20',
+        x: '+=10',
+        rotation: `+=${randomRotation / 2}`,
+        duration: 3 + Math.random() * 2,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut',
+        delay: index * 0.3
+      });
     });
   }, []);
 
-  // Facts Section Animations - Scrapbook style
+  // Facts Section Animations - Interactive scroll-triggered
   useEffect(() => {
     const factCards = factsSection.current?.querySelectorAll('.fact-card');
     if (!factCards) return;
@@ -1002,13 +1028,14 @@ function Findings() {
       const randomRotation = Math.random() * 6 - 3;
       const randomSkew = Math.random() * 4 - 2;
 
+      // Main card entrance animation
       gsap.fromTo(
         card,
         {
           opacity: 0,
-          y: 80,
-          scale: 0.85,
-          rotation: randomRotation - 10,
+          y: 100,
+          scale: 0.7,
+          rotation: randomRotation - 15,
           skewY: randomSkew
         },
         {
@@ -1017,36 +1044,75 @@ function Findings() {
           scale: 1,
           rotation: randomRotation,
           skewY: randomSkew,
-          duration: 1,
-          delay: index * 0.25,
-          ease: 'back.out(2)',
+          duration: 1.2,
+          ease: 'elastic.out(1, 0.6)',
           scrollTrigger: {
             trigger: card,
-            start: 'top 80%',
-            end: 'top 30%',
+            start: 'top 85%',
+            end: 'top 20%',
             toggleActions: 'play none none reverse'
           }
         }
       );
 
-      // Image animation on hover - stop motion style
+      // Image parallax effect on scroll
       const img = card.querySelector('.fact-image img');
       if (img) {
+        gsap.fromTo(
+          img,
+          { scale: 1.3, y: -30 },
+          {
+            scale: 1,
+            y: 0,
+            duration: 1.2,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%',
+              end: 'top 20%',
+              scrub: 1
+            }
+          }
+        );
+
+        // Hover interaction
         card.addEventListener('mouseenter', () => {
           gsap.to(img, {
-            scale: 1.1,
-            duration: 0.4,
-            ease: 'back.out'
+            scale: 1.15,
+            duration: 0.6,
+            ease: 'power2.out'
           });
         });
-        
+
         card.addEventListener('mouseleave', () => {
           gsap.to(img, {
             scale: 1,
-            duration: 0.4,
-            ease: 'back.out'
+            duration: 0.6,
+            ease: 'power2.out'
           });
         });
+      }
+
+      // Content reveal animation
+      const content = card.querySelector('.fact-content');
+      if (content) {
+        gsap.fromTo(
+          content,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: 0.3,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 75%',
+              end: 'top 20%',
+              toggleActions: 'play none none reverse'
+            }
+          }
+        );
       }
     });
   }, []);
