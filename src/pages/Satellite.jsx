@@ -61,51 +61,56 @@ function Satellite() {
 
     // Dummy GeoJSON data untuk testing (area sekitar Sumatera Utara)
     const dummyData = {
-      'type': 'Feature',
-      'geometry': {
-        'type': 'Polygon',
-        'coordinates': [[
-          [98.0, 4.0],
-          [100.0, 4.0],
-          [100.0, 1.0],
-          [98.0, 1.0],
-          [98.0, 4.0]
-        ]]
-      }
+      type: "Feature",
+      geometry: {
+        type: "Polygon",
+        coordinates: [
+          [
+            [98.0, 4.0],
+            [100.0, 4.0],
+            [100.0, 1.0],
+            [98.0, 1.0],
+            [98.0, 4.0],
+          ],
+        ],
+      },
     };
 
     // Add source
-    if (!map.getSource('survey-area')) {
-      map.addSource('survey-area', {
-        type: 'geojson',
-        data: dummyData
+    if (!map.getSource("survey-area")) {
+      map.addSource("survey-area", {
+        type: "geojson",
+        data: dummyData,
       });
 
       // Add fill layer
       map.addLayer({
-        id: 'survey-area-fill',
-        type: 'fill',
-        source: 'survey-area',
+        id: "survey-area-fill",
+        type: "fill",
+        source: "survey-area",
         paint: {
-          'fill-color': '#FF0000',
-          'fill-opacity': 0.8
-        }
+          "fill-color": "#FF0000",
+          "fill-opacity": 0.8,
+        },
       });
 
       // Add outline layer
       map.addLayer({
-        id: 'survey-area-outline',
-        type: 'line',
-        source: 'survey-area',
+        id: "survey-area-outline",
+        type: "line",
+        source: "survey-area",
         paint: {
-          'line-color': '#0000FF',
-          'line-width': 4
-        }
+          "line-color": "#0000FF",
+          "line-width": 4,
+        },
       });
 
-      console.log('Dummy polygon added successfully');
-      console.log('Map layers:', map.getStyle().layers.map(l => l.id));
-      console.log('Map sources:', Object.keys(map.getStyle().sources));
+      console.log("Dummy polygon added successfully");
+      console.log(
+        "Map layers:",
+        map.getStyle().layers.map((l) => l.id),
+      );
+      console.log("Map sources:", Object.keys(map.getStyle().sources));
     }
 
     // TODO: Ganti dengan load dari file setelah dummy berhasil
@@ -123,18 +128,18 @@ function Satellite() {
   // Update layer opacity based on active chapter
   useEffect(() => {
     if (!mapRef.current) return;
-    
+
     const map = mapRef.current.getMap();
-    if (map.getLayer('survey-area-fill')) {
+    if (map.getLayer("survey-area-fill")) {
       map.setPaintProperty(
-        'survey-area-fill',
-        'fill-opacity',
-        activeChapter === 'problem' ? 0.6 : 0.15
+        "survey-area-fill",
+        "fill-opacity",
+        activeChapter === "problem" ? 0.6 : 0.15,
       );
       map.setPaintProperty(
-        'survey-area-outline',
-        'line-width',
-        activeChapter === 'problem' ? 3 : 2
+        "survey-area-outline",
+        "line-width",
+        activeChapter === "problem" ? 3 : 2,
       );
     }
   }, [activeChapter]);
@@ -155,7 +160,7 @@ function Satellite() {
 
               // Fly to chapter location
               if (mapRef.current && chapters[section]) {
-                console.log('Flying to chapter:', section, chapters[section]);
+                console.log("Flying to chapter:", section, chapters[section]);
                 mapRef.current.flyTo(chapters[section]);
               }
 
@@ -397,11 +402,19 @@ function Satellite() {
 
       {/* Navigation */}
       <div className="story-navigation">
-        <Link to="/findings" className="nav-button back">
-          Sebelumnya
+        <Link
+          to="/findings"
+          className="nav-button back"
+          onClick={() => window.scrollTo(0, 0)}
+        >
+          ← Sebelumnya
         </Link>
-        <Link to="/" className="nav-button next">
-          Selesai
+        <Link
+          to="/"
+          className="nav-button next"
+          onClick={() => window.scrollTo(0, 0)}
+        >
+          Selesai →
         </Link>
       </div>
     </div>

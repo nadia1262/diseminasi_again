@@ -81,7 +81,8 @@ function Journey() {
       // ============================================
       // BEAT 1: COVER - TYPEWRITER TITLE
       // ============================================
-      gsap.fromTo(".beat-1-title-char",
+      gsap.fromTo(
+        ".beat-1-title-char",
         {
           opacity: 0,
           y: -8,
@@ -97,10 +98,11 @@ function Journey() {
             start: "top 70%",
             toggleActions: "play none none none",
           },
-        }
+        },
       );
 
-      gsap.fromTo(".beat-1-hero-img",
+      gsap.fromTo(
+        ".beat-1-hero-img",
         {
           scale: 0.88,
           opacity: 0,
@@ -116,7 +118,7 @@ function Journey() {
             trigger: ".beat-1",
             start: "top 50%",
           },
-        }
+        },
       );
 
       gsap.to(".beat-1-hero-img", {
@@ -135,11 +137,11 @@ function Journey() {
         ease: "sine.inOut",
         yoyo: true,
         repeat: -1,
-        transformOrigin: "bottom center"
+        transformOrigin: "bottom center",
       });
 
       gsap.to(".beat-1-palm-right-img", {
-        rotation: 2, /* Made positive to match left, assuming wrapper handles flip */
+        rotation: 2 /* Made positive to match left, assuming wrapper handles flip */,
         duration: 2,
         ease: "sine.inOut",
         yoyo: true,
@@ -152,7 +154,7 @@ function Journey() {
         rotation: 360,
         duration: 20,
         ease: "none",
-        repeat: -1
+        repeat: -1,
       });
 
       gsap.to(".beat-1-sun", {
@@ -160,10 +162,11 @@ function Journey() {
         duration: 2,
         ease: "sine.inOut",
         yoyo: true,
-        repeat: -1
+        repeat: -1,
       });
 
-      gsap.fromTo(".date-text",
+      gsap.fromTo(
+        ".date-text",
         {
           opacity: 0,
         },
@@ -171,35 +174,37 @@ function Journey() {
           opacity: 1,
           duration: 1,
           delay: 1,
-          ease: "power2.out"
-        }
+          ease: "power2.out",
+        },
       );
 
       // ============================================
       // BRIDGE 1: PAGE DIVIDER (TEAR EFFECT)
       // ============================================
-      gsap.fromTo(".bridge-page-divider-1",
+      gsap.fromTo(
+        ".bridge-page-divider-1",
         {
-          clipPath: "inset(0 100% 0 0)", /* Start fully clipped from right */
+          clipPath: "inset(0 100% 0 0)" /* Start fully clipped from right */,
           opacity: 1,
         },
         {
-          clipPath: "inset(0 0% 0 0)", /* Reveal to full width */
+          clipPath: "inset(0 0% 0 0)" /* Reveal to full width */,
           duration: 1.5,
-          ease: "power4.inOut", /* Strong, clearer movement */
+          ease: "power4.inOut" /* Strong, clearer movement */,
           scrollTrigger: {
             trigger: ".bridge-page-divider-1",
             start: "top 80%",
             end: "bottom 50%",
-            scrub: 1, /* Link to scroll for manual tearing feel */
+            scrub: 1 /* Link to scroll for manual tearing feel */,
           },
-        }
+        },
       );
 
       // ============================================
       // BEAT 2: ALOKASI PETUGAS
       // ============================================
-      gsap.fromTo(".beat-2",
+      gsap.fromTo(
+        ".beat-2",
         {
           opacity: 0,
           y: 60,
@@ -215,10 +220,11 @@ function Journey() {
             end: "top 45%",
             scrub: 1,
           },
-        }
+        },
       );
 
-      gsap.fromTo(".map-sumatera",
+      gsap.fromTo(
+        ".map-sumatera",
         {
           scale: 0.85,
           opacity: 0,
@@ -232,10 +238,11 @@ function Journey() {
             trigger: ".beat-2",
             start: "top 60%",
           },
-        }
+        },
       );
 
-      gsap.fromTo(".map-location",
+      gsap.fromTo(
+        ".map-location",
         {
           scale: 0,
           opacity: 0,
@@ -250,10 +257,11 @@ function Journey() {
             trigger: ".beat-2",
             start: "top 55%",
           },
-        }
+        },
       );
 
-      gsap.fromTo(".allocation-label",
+      gsap.fromTo(
+        ".allocation-label",
         {
           x: -30,
           opacity: 0,
@@ -268,10 +276,11 @@ function Journey() {
             trigger: ".beat-2",
             start: "top 50%",
           },
-        }
+        },
       );
 
-      gsap.fromTo(".beat-2",
+      gsap.fromTo(
+        ".beat-2",
         {
           opacity: 1,
         },
@@ -286,13 +295,14 @@ function Journey() {
             end: "bottom 20%",
             scrub: 1,
           },
-        }
+        },
       );
 
       // ============================================
       // BRIDGE 2: FOOTPRINTS
       // ============================================
-      gsap.fromTo(".footprint",
+      gsap.fromTo(
+        ".footprint",
         {
           scale: 0,
           opacity: 0,
@@ -311,13 +321,14 @@ function Journey() {
             end: "bottom 50%",
             scrub: 0.5,
           },
-        }
+        },
       );
 
       // ============================================
       // BEAT 3: KEBERANGKATAN - BOARDING PASS + PLANE
       // ============================================
-      gsap.fromTo(".beat-3",
+      gsap.fromTo(
+        ".beat-3",
         {
           opacity: 0,
           y: 50,
@@ -333,10 +344,11 @@ function Journey() {
             end: "top 50%",
             scrub: 1,
           },
-        }
+        },
       );
 
-      gsap.fromTo(".boarding-pass",
+      gsap.fromTo(
+        ".boarding-pass",
         {
           x: -180,
           rotation: -12,
@@ -352,7 +364,7 @@ function Journey() {
             trigger: ".beat-3",
             start: "top 60%",
           },
-        }
+        },
       );
 
       gsap.fromTo(
@@ -376,10 +388,11 @@ function Journey() {
             end: "bottom 20%",
             scrub: 1.2,
           },
-        }
+        },
       );
 
-      gsap.fromTo(".luggage-item",
+      gsap.fromTo(
+        ".luggage-item",
         {
           scale: 0.75,
           opacity: 0,
@@ -396,7 +409,7 @@ function Journey() {
             trigger: ".luggage-items",
             start: "top 65%",
           },
-        }
+        },
       );
 
       gsap.to(".luggage-item", {
@@ -408,7 +421,8 @@ function Journey() {
         yoyo: true,
       });
 
-      gsap.fromTo(".beat-3",
+      gsap.fromTo(
+        ".beat-3",
         {
           opacity: 1,
         },
@@ -423,13 +437,14 @@ function Journey() {
             end: "bottom 15%",
             scrub: 1,
           },
-        }
+        },
       );
 
       // ============================================
       // BRIDGE 3: RAFIA WEAVE
       // ============================================
-      gsap.fromTo(".bridge-rafia",
+      gsap.fromTo(
+        ".bridge-rafia",
         {
           scaleX: 0,
           transformOrigin: "left",
@@ -444,13 +459,14 @@ function Journey() {
             end: "bottom 55%",
             scrub: 0.8,
           },
-        }
+        },
       );
 
       // ============================================
       // BEAT 4: PETA POSKO
       // ============================================
-      gsap.fromTo(".beat-4",
+      gsap.fromTo(
+        ".beat-4",
         {
           opacity: 0,
           y: 60,
@@ -466,10 +482,11 @@ function Journey() {
             end: "top 45%",
             scrub: 1,
           },
-        }
+        },
       );
 
-      gsap.fromTo(".posko-card",
+      gsap.fromTo(
+        ".posko-card",
         {
           scale: 0.9,
           opacity: 0,
@@ -486,7 +503,7 @@ function Journey() {
             trigger: ".beat-4-posko-grid",
             start: "top 65%",
           },
-        }
+        },
       );
 
       gsap.to(".posko-card", {
@@ -498,7 +515,8 @@ function Journey() {
         yoyo: true,
       });
 
-      gsap.fromTo(".beat-4",
+      gsap.fromTo(
+        ".beat-4",
         {
           opacity: 1,
         },
@@ -513,13 +531,14 @@ function Journey() {
             end: "bottom 20%",
             scrub: 1,
           },
-        }
+        },
       );
 
       // ============================================
       // BEAT 5: CORKBOARD - PIN NOTES
       // ============================================
-      gsap.fromTo(".beat-5",
+      gsap.fromTo(
+        ".beat-5",
         {
           opacity: 0,
           y: 60,
@@ -535,10 +554,11 @@ function Journey() {
             end: "top 45%",
             scrub: 1,
           },
-        }
+        },
       );
 
-      gsap.fromTo(".cork-item",
+      gsap.fromTo(
+        ".cork-item",
         {
           scale: 0,
           rotation: "random(-25, 25)",
@@ -555,7 +575,7 @@ function Journey() {
             trigger: ".corkboard",
             start: "top 60%",
           },
-        }
+        },
       );
 
       gsap.to(".cork-item", {
@@ -568,7 +588,8 @@ function Journey() {
         yoyo: true,
       });
 
-      gsap.fromTo(".beat-5",
+      gsap.fromTo(
+        ".beat-5",
         {
           opacity: 1,
         },
@@ -583,13 +604,14 @@ function Journey() {
             end: "bottom 20%",
             scrub: 1,
           },
-        }
+        },
       );
 
       // ============================================
       // BEAT 6: FLATLAY - DESK SCENE
       // ============================================
-      gsap.fromTo(".beat-6",
+      gsap.fromTo(
+        ".beat-6",
         {
           opacity: 0,
           y: 60,
@@ -605,10 +627,11 @@ function Journey() {
             end: "top 45%",
             scrub: 1,
           },
-        }
+        },
       );
 
-      gsap.fromTo(".flatlay-item",
+      gsap.fromTo(
+        ".flatlay-item",
         {
           scale: 0.85,
           opacity: 0,
@@ -625,7 +648,7 @@ function Journey() {
             trigger: ".flatlay-table",
             start: "top 60%",
           },
-        }
+        },
       );
 
       gsap.to(".flatlay-item", {
@@ -637,7 +660,8 @@ function Journey() {
         yoyo: true,
       });
 
-      gsap.fromTo(".beat-6",
+      gsap.fromTo(
+        ".beat-6",
         {
           opacity: 1,
         },
@@ -652,13 +676,14 @@ function Journey() {
             end: "bottom 20%",
             scrub: 1,
           },
-        }
+        },
       );
 
       // ============================================
       // BRIDGE 4: MUD SPLASHES
       // ============================================
-      gsap.fromTo(".mud-splash",
+      gsap.fromTo(
+        ".mud-splash",
         {
           scale: 0,
           opacity: 0,
@@ -675,13 +700,14 @@ function Journey() {
             end: "bottom 50%",
             scrub: 0.5,
           },
-        }
+        },
       );
 
       // ============================================
       // BEAT 7: JOURNEY COLLAGE
       // ============================================
-      gsap.fromTo(".beat-7",
+      gsap.fromTo(
+        ".beat-7",
         {
           opacity: 0,
           y: 60,
@@ -697,10 +723,11 @@ function Journey() {
             end: "top 45%",
             scrub: 1,
           },
-        }
+        },
       );
 
-      gsap.fromTo(".journey-photo",
+      gsap.fromTo(
+        ".journey-photo",
         {
           scale: 0.85,
           opacity: 0,
@@ -717,7 +744,7 @@ function Journey() {
             trigger: ".journey-collage",
             start: "top 60%",
           },
-        }
+        },
       );
 
       gsap.to(".journey-photo", {
@@ -729,7 +756,8 @@ function Journey() {
         yoyo: true,
       });
 
-      gsap.fromTo(".beat-7",
+      gsap.fromTo(
+        ".beat-7",
         {
           opacity: 1,
         },
@@ -744,13 +772,14 @@ function Journey() {
             end: "bottom 20%",
             scrub: 1,
           },
-        }
+        },
       );
 
       // ============================================
       // BEAT 8: DRAGGABLE CHALLENGES
       // ============================================
-      gsap.fromTo(".beat-8",
+      gsap.fromTo(
+        ".beat-8",
         {
           opacity: 0,
           y: 60,
@@ -766,10 +795,11 @@ function Journey() {
             end: "top 45%",
             scrub: 1,
           },
-        }
+        },
       );
 
-      gsap.fromTo(".drag-photo",
+      gsap.fromTo(
+        ".drag-photo",
         {
           scale: 0.88,
           opacity: 0,
@@ -786,7 +816,7 @@ function Journey() {
             trigger: ".beat-8-drag-area",
             start: "top 60%",
           },
-        }
+        },
       );
 
       Draggable.create(".drag-photo", {
@@ -808,7 +838,8 @@ function Journey() {
         },
       });
 
-      gsap.fromTo(".beat-8",
+      gsap.fromTo(
+        ".beat-8",
         {
           opacity: 1,
         },
@@ -823,13 +854,14 @@ function Journey() {
             end: "bottom 20%",
             scrub: 1,
           },
-        }
+        },
       );
 
       // ============================================
       // BRIDGE 5: TORN PAPER
       // ============================================
-      gsap.fromTo(".torn-piece",
+      gsap.fromTo(
+        ".torn-piece",
         {
           y: -50,
           rotation: "random(-15, 15)",
@@ -848,13 +880,14 @@ function Journey() {
             end: "bottom 50%",
             scrub: 0.5,
           },
-        }
+        },
       );
 
       // ============================================
       // BEAT 9: STICKY NOTES - VOICES
       // ============================================
-      gsap.fromTo(".beat-9",
+      gsap.fromTo(
+        ".beat-9",
         {
           opacity: 0,
           y: 60,
@@ -870,10 +903,11 @@ function Journey() {
             end: "top 45%",
             scrub: 1,
           },
-        }
+        },
       );
 
-      gsap.fromTo(".voice-sticky",
+      gsap.fromTo(
+        ".voice-sticky",
         {
           scale: 0,
           rotation: "random(-30, 30)",
@@ -890,7 +924,7 @@ function Journey() {
             trigger: ".sticky-wall",
             start: "top 60%",
           },
-        }
+        },
       );
 
       gsap.to(".voice-sticky", {
@@ -902,7 +936,8 @@ function Journey() {
         yoyo: true,
       });
 
-      gsap.fromTo(".beat-9",
+      gsap.fromTo(
+        ".beat-9",
         {
           opacity: 1,
         },
@@ -917,13 +952,14 @@ function Journey() {
             end: "bottom 20%",
             scrub: 1,
           },
-        }
+        },
       );
 
       // ============================================
       // BEAT 10: PHONE DEVICE - CHAT LOGS
       // ============================================
-      gsap.fromTo(".beat-10",
+      gsap.fromTo(
+        ".beat-10",
         {
           opacity: 0,
           y: 60,
@@ -939,10 +975,11 @@ function Journey() {
             end: "top 45%",
             scrub: 1,
           },
-        }
+        },
       );
 
-      gsap.fromTo(".phone-device",
+      gsap.fromTo(
+        ".phone-device",
         {
           scale: 0.9,
           opacity: 0,
@@ -958,7 +995,7 @@ function Journey() {
             trigger: ".beat-10",
             start: "top 60%",
           },
-        }
+        },
       );
 
       gsap.to(".phone-device", {
@@ -970,7 +1007,8 @@ function Journey() {
         yoyo: true,
       });
 
-      gsap.fromTo(".chat-bubble",
+      gsap.fromTo(
+        ".chat-bubble",
         {
           x: -20,
           opacity: 0,
@@ -985,10 +1023,11 @@ function Journey() {
             trigger: ".chat-screen",
             start: "top 55%",
           },
-        }
+        },
       );
 
-      gsap.fromTo(".beat-10",
+      gsap.fromTo(
+        ".beat-10",
         {
           opacity: 1,
         },
@@ -1003,13 +1042,14 @@ function Journey() {
             end: "bottom 20%",
             scrub: 1,
           },
-        }
+        },
       );
 
       // ============================================
       // BEAT 11: FASIH SCREEN - PROGRESS
       // ============================================
-      gsap.fromTo(".beat-11",
+      gsap.fromTo(
+        ".beat-11",
         {
           opacity: 0,
           y: 60,
@@ -1025,10 +1065,11 @@ function Journey() {
             end: "top 45%",
             scrub: 1,
           },
-        }
+        },
       );
 
-      gsap.fromTo(".fasih-device",
+      gsap.fromTo(
+        ".fasih-device",
         {
           scale: 0.9,
           opacity: 0,
@@ -1044,7 +1085,7 @@ function Journey() {
             trigger: ".beat-11",
             start: "top 60%",
           },
-        }
+        },
       );
 
       gsap.to(".fasih-device", {
@@ -1056,7 +1097,8 @@ function Journey() {
         yoyo: true,
       });
 
-      gsap.fromTo(".metric-row",
+      gsap.fromTo(
+        ".metric-row",
         {
           x: -30,
           opacity: 0,
@@ -1071,10 +1113,11 @@ function Journey() {
             trigger: ".beat-11-metrics",
             start: "top 60%",
           },
-        }
+        },
       );
 
-      gsap.fromTo(".progress-bar-fill",
+      gsap.fromTo(
+        ".progress-bar-fill",
         {
           scaleX: 0,
           transformOrigin: "left",
@@ -1088,10 +1131,11 @@ function Journey() {
             trigger: ".beat-11-metrics",
             start: "top 55%",
           },
-        }
+        },
       );
 
-      gsap.fromTo(".beat-11",
+      gsap.fromTo(
+        ".beat-11",
         {
           opacity: 1,
         },
@@ -1106,13 +1150,14 @@ function Journey() {
             end: "bottom 20%",
             scrub: 1,
           },
-        }
+        },
       );
 
       // ============================================
       // BEAT 12: HEALTH SECTION
       // ============================================
-      gsap.fromTo(".beat-12",
+      gsap.fromTo(
+        ".beat-12",
         {
           opacity: 0,
           y: 60,
@@ -1128,10 +1173,11 @@ function Journey() {
             end: "top 45%",
             scrub: 1,
           },
-        }
+        },
       );
 
-      gsap.fromTo(".medicine-box",
+      gsap.fromTo(
+        ".medicine-box",
         {
           scale: 0.85,
           opacity: 0,
@@ -1148,7 +1194,7 @@ function Journey() {
             trigger: ".medicine-row",
             start: "top 65%",
           },
-        }
+        },
       );
 
       gsap.to(".medicine-box", {
@@ -1160,7 +1206,8 @@ function Journey() {
         yoyo: true,
       });
 
-      gsap.fromTo(".health-bar",
+      gsap.fromTo(
+        ".health-bar",
         {
           scaleY: 0,
           transformOrigin: "bottom",
@@ -1174,10 +1221,11 @@ function Journey() {
             trigger: ".beat-12-chart",
             start: "top 60%",
           },
-        }
+        },
       );
 
-      gsap.fromTo(".beat-12",
+      gsap.fromTo(
+        ".beat-12",
         {
           opacity: 1,
         },
@@ -1192,13 +1240,14 @@ function Journey() {
             end: "bottom 20%",
             scrub: 1,
           },
-        }
+        },
       );
 
       // ============================================
       // BRIDGE 6: MARKER LINE
       // ============================================
-      gsap.fromTo(".marker-line",
+      gsap.fromTo(
+        ".marker-line",
         {
           scaleX: 0,
           transformOrigin: "center",
@@ -1213,13 +1262,14 @@ function Journey() {
             end: "bottom 50%",
             scrub: 0.8,
           },
-        }
+        },
       );
 
       // ============================================
       // BEAT 13: POLAROID PILE
       // ============================================
-      gsap.fromTo(".beat-13",
+      gsap.fromTo(
+        ".beat-13",
         {
           opacity: 0,
           y: 60,
@@ -1235,10 +1285,11 @@ function Journey() {
             end: "top 45%",
             scrub: 1,
           },
-        }
+        },
       );
 
-      gsap.fromTo(".polaroid-card",
+      gsap.fromTo(
+        ".polaroid-card",
         {
           scale: 0,
           rotation: "random(-90, 90)",
@@ -1255,7 +1306,7 @@ function Journey() {
             trigger: ".polaroid-pile",
             start: "top 60%",
           },
-        }
+        },
       );
 
       gsap.to(".polaroid-card", {
@@ -1268,7 +1319,8 @@ function Journey() {
         yoyo: true,
       });
 
-      gsap.fromTo(".beat-13",
+      gsap.fromTo(
+        ".beat-13",
         {
           opacity: 1,
         },
@@ -1283,13 +1335,14 @@ function Journey() {
             end: "bottom 20%",
             scrub: 1,
           },
-        }
+        },
       );
 
       // ============================================
       // BEAT 14: ENVELOPE & LETTER
       // ============================================
-      gsap.fromTo(".beat-14",
+      gsap.fromTo(
+        ".beat-14",
         {
           opacity: 0,
           y: 60,
@@ -1305,10 +1358,11 @@ function Journey() {
             end: "top 45%",
             scrub: 1,
           },
-        }
+        },
       );
 
-      gsap.fromTo(".envelope",
+      gsap.fromTo(
+        ".envelope",
         {
           scale: 0.9,
           opacity: 0,
@@ -1324,10 +1378,11 @@ function Journey() {
             trigger: ".beat-14",
             start: "top 60%",
           },
-        }
+        },
       );
 
-      gsap.fromTo(".envelope-flap",
+      gsap.fromTo(
+        ".envelope-flap",
         {
           rotateX: 0,
         },
@@ -1341,10 +1396,11 @@ function Journey() {
             end: "top 20%",
             scrub: 1,
           },
-        }
+        },
       );
 
-      gsap.fromTo(".letter-paper",
+      gsap.fromTo(
+        ".letter-paper",
         {
           y: 200,
           opacity: 0,
@@ -1360,10 +1416,11 @@ function Journey() {
             end: "top 15%",
             scrub: 1,
           },
-        }
+        },
       );
 
-      gsap.fromTo(".wax-seal",
+      gsap.fromTo(
+        ".wax-seal",
         {
           scale: 0,
           rotation: -360,
@@ -1379,7 +1436,7 @@ function Journey() {
             trigger: ".envelope-wrapper",
             start: "top 30%",
           },
-        }
+        },
       );
 
       gsap.to(".wax-seal", {
@@ -1390,7 +1447,8 @@ function Journey() {
         yoyo: true,
       });
 
-      gsap.fromTo(".beat-14",
+      gsap.fromTo(
+        ".beat-14",
         {
           opacity: 1,
         },
@@ -1405,13 +1463,14 @@ function Journey() {
             end: "bottom 20%",
             scrub: 1,
           },
-        }
+        },
       );
 
       // ============================================
       // BEAT 15: CLOSING
       // ============================================
-      gsap.fromTo(".beat-15",
+      gsap.fromTo(
+        ".beat-15",
         {
           opacity: 0,
           y: 60,
@@ -1427,10 +1486,11 @@ function Journey() {
             end: "top 45%",
             scrub: 1,
           },
-        }
+        },
       );
 
-      gsap.fromTo(".final-quote",
+      gsap.fromTo(
+        ".final-quote",
         {
           scale: 0.95,
           opacity: 0,
@@ -1446,10 +1506,11 @@ function Journey() {
             trigger: ".beat-15",
             start: "top 55%",
           },
-        }
+        },
       );
 
-      gsap.fromTo(".final-credit",
+      gsap.fromTo(
+        ".final-credit",
         {
           opacity: 0,
           y: 20,
@@ -1464,10 +1525,11 @@ function Journey() {
             trigger: ".beat-15",
             start: "top 45%",
           },
-        }
+        },
       );
 
-      gsap.fromTo(".beat-caption.final",
+      gsap.fromTo(
+        ".beat-caption.final",
         {
           scale: 0.9,
           opacity: 0,
@@ -1482,7 +1544,7 @@ function Journey() {
             trigger: ".beat-15",
             start: "top 40%",
           },
-        }
+        },
       );
     }, canvasRef);
 
@@ -1495,7 +1557,10 @@ function Journey() {
         <div className="loading-content">
           <div className="loading-text">Memuat Perjalanan...</div>
           <div className="loading-bar">
-            <div className="loading-fill" style={{ width: `${loadProgress}%` }}></div>
+            <div
+              className="loading-fill"
+              style={{ width: `${loadProgress}%` }}
+            ></div>
           </div>
           <div className="loading-percentage">{loadProgress}%</div>
         </div>
@@ -1512,12 +1577,18 @@ function Journey() {
         <div className="grain-overlay"></div>
         <img src={sawit2} className="beat-1-palm-left" alt="Pohon Sawit Kiri" />
         <div className="beat-1-palm-right-wrapper">
-          <img src={sawit2} className="beat-1-palm-right-img" alt="Pohon Sawit Kanan" />
+          <img
+            src={sawit2}
+            className="beat-1-palm-right-img"
+            alt="Pohon Sawit Kanan"
+          />
         </div>
 
         <h1 className="beat-1-title">
           {"Pendataan R3P".split("").map((char, i) => (
-            <span key={i} className="beat-1-title-char">{char}</span>
+            <span key={i} className="beat-1-title-char">
+              {char}
+            </span>
           ))}
         </h1>
 
@@ -1526,7 +1597,9 @@ function Journey() {
             <div className="frame-content"></div>
             <img src={matahari} className="beat-1-sun" alt="Matahari" />
             <div className="polaroid-caption">
-              <span className="date-text">14 Januari 2026 - 3 Februari 2026</span>
+              <span className="date-text">
+                14 Januari 2026 - 3 Februari 2026
+              </span>
             </div>
           </div>
         </div>
@@ -1550,22 +1623,46 @@ function Journey() {
           {/* Lokasi Aceh - Kiri Atas */}
           <div className="map-location loc-aceh">
             <img src={point} className="loc-pin" alt="Pin Aceh" />
-            <img src={pesawat} className="loc-plane plane-aceh" alt="Pesawat Aceh" />
-            <img src={arrow} className="flight-path path-aceh" alt="Arrow Aceh" />
+            <img
+              src={pesawat}
+              className="loc-plane plane-aceh"
+              alt="Pesawat Aceh"
+            />
+            <img
+              src={arrow}
+              className="flight-path path-aceh"
+              alt="Arrow Aceh"
+            />
           </div>
 
           {/* Lokasi Sumatera Utara - Kanan Atas */}
           <div className="map-location loc-sumut">
             <img src={point} className="loc-pin" alt="Pin Sumatera Utara" />
-            <img src={pesawat} className="loc-plane plane-sumut" alt="Pesawat Sumut" />
-            <img src={arrow} className="flight-path path-sumut" alt="Arrow Sumut" />
+            <img
+              src={pesawat}
+              className="loc-plane plane-sumut"
+              alt="Pesawat Sumut"
+            />
+            <img
+              src={arrow}
+              className="flight-path path-sumut"
+              alt="Arrow Sumut"
+            />
           </div>
 
           {/* Lokasi Sumatera Barat - Kanan Bawah */}
           <div className="map-location loc-sumbar">
             <img src={point} className="loc-pin" alt="Pin Sumatera Barat" />
-            <img src={pesawat} className="loc-plane plane-sumbar" alt="Pesawat Sumbar" />
-            <img src={arrow} className="flight-path path-sumbar" alt="Arrow Sumbar" />
+            <img
+              src={pesawat}
+              className="loc-plane plane-sumbar"
+              alt="Pesawat Sumbar"
+            />
+            <img
+              src={arrow}
+              className="flight-path path-sumbar"
+              alt="Arrow Sumbar"
+            />
           </div>
         </div>
 
@@ -1697,7 +1794,9 @@ function Journey() {
           </div>
         </div>
 
-        <p className="beat-caption handwritten">51 titik harapan di seluruh wilayah bencana.</p>
+        <p className="beat-caption handwritten">
+          51 titik harapan di seluruh wilayah bencana.
+        </p>
       </div>
 
       {/* ============================================
@@ -1707,35 +1806,65 @@ function Journey() {
         <h2 className="beat-title handwritten">Catatan dari Lapangan</h2>
 
         <div className="corkboard">
-          <div className="cork-item photo-note" style={{ left: "8%", top: "12%" }}>
-            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=250&h=280&fit=crop" alt="Pagi hari" />
+          <div
+            className="cork-item photo-note"
+            style={{ left: "8%", top: "12%" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=250&h=280&fit=crop"
+              alt="Pagi hari"
+            />
             <p className="photo-note">Hari 1: Pagi yang berat</p>
             <div className="pin">📌</div>
           </div>
 
-          <div className="cork-item sticky-note yellow" style={{ left: "42%", top: "18%", rotate: "3deg" }}>
-            <p>"Rumah pertama yang kami kunjungi... ibu-ibu menangis saat cerita."</p>
+          <div
+            className="cork-item sticky-note yellow"
+            style={{ left: "42%", top: "18%", rotate: "3deg" }}
+          >
+            <p>
+              "Rumah pertama yang kami kunjungi... ibu-ibu menangis saat
+              cerita."
+            </p>
             <div className="pin">📌</div>
           </div>
 
-          <div className="cork-item photo-note" style={{ left: "72%", top: "15%" }}>
-            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=250&h=280&fit=crop" alt="Survey" />
+          <div
+            className="cork-item photo-note"
+            style={{ left: "72%", top: "15%" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=250&h=280&fit=crop"
+              alt="Survey"
+            />
             <p className="photo-note">Door to door survey</p>
             <div className="pin">📌</div>
           </div>
 
-          <div className="cork-item sticky-note pink" style={{ left: "15%", top: "55%", rotate: "-5deg" }}>
+          <div
+            className="cork-item sticky-note pink"
+            style={{ left: "15%", top: "55%", rotate: "-5deg" }}
+          >
             <p>"Target hari ini: 40 KK. Baru 18 KK, tapi kaki sudah pegal."</p>
             <div className="pin">📌</div>
           </div>
 
-          <div className="cork-item photo-note" style={{ left: "48%", top: "58%" }}>
-            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=250&h=280&fit=crop" alt="Istirahat" />
+          <div
+            className="cork-item photo-note"
+            style={{ left: "48%", top: "58%" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=250&h=280&fit=crop"
+              alt="Istirahat"
+            />
             <p className="photo-note">Istirahat sejenak</p>
             <div className="pin">📌</div>
           </div>
 
-          <div className="cork-item sticky-note green" style={{ left: "78%", top: "62%", rotate: "4deg" }}>
+          <div
+            className="cork-item sticky-note green"
+            style={{ left: "78%", top: "62%", rotate: "4deg" }}
+          >
             <p>"Akhirnya bisa submit 50 form hari ini! Capek tapi puas."</p>
             <div className="pin">📌</div>
           </div>
@@ -1751,7 +1880,10 @@ function Journey() {
         <h2 className="beat-title handwritten">Meja Kerja Malam</h2>
 
         <div className="flatlay-table">
-          <div className="flatlay-item" style={{ left: "10%", top: "15%", rotate: "-6deg" }}>
+          <div
+            className="flatlay-item"
+            style={{ left: "10%", top: "15%", rotate: "-6deg" }}
+          >
             <div className="item-paper">
               <div className="paper-title">Laporan Harian</div>
               <div className="paper-lines">
@@ -1764,7 +1896,10 @@ function Journey() {
             </div>
           </div>
 
-          <div className="flatlay-item" style={{ left: "45%", top: "12%", rotate: "2deg" }}>
+          <div
+            className="flatlay-item"
+            style={{ left: "45%", top: "12%", rotate: "2deg" }}
+          >
             <div className="item-tablet">
               <div className="tablet-screen">
                 <div className="app-icon">📊</div>
@@ -1774,45 +1909,76 @@ function Journey() {
             </div>
           </div>
 
-          <div className="flatlay-item" style={{ left: "72%", top: "18%", rotate: "-3deg" }}>
+          <div
+            className="flatlay-item"
+            style={{ left: "72%", top: "18%", rotate: "-3deg" }}
+          >
             <div className="item-photo">
-              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=200&fit=crop" alt="Tim malam" />
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=200&fit=crop"
+                alt="Tim malam"
+              />
             </div>
           </div>
 
-          <div className="flatlay-item" style={{ left: "18%", top: "58%", rotate: "5deg" }}>
+          <div
+            className="flatlay-item"
+            style={{ left: "18%", top: "58%", rotate: "5deg" }}
+          >
             <div className="item-coffee">☕</div>
             <p className="item-label">Kopi ke-4</p>
           </div>
 
-          <div className="flatlay-item" style={{ left: "52%", top: "62%", rotate: "-4deg" }}>
+          <div
+            className="flatlay-item"
+            style={{ left: "52%", top: "62%", rotate: "-4deg" }}
+          >
             <div className="item-notes">
               <div className="notes-title">To-Do Besok:</div>
               <div className="notes-list">
                 ☐ Verifikasi data
                 <br />
                 ☐ Follow-up KK reject
-                <br />
-                ☐ Submit laporan
+                <br />☐ Submit laporan
               </div>
             </div>
           </div>
 
-          <div className="flatlay-item" style={{ left: "78%", top: "65%", rotate: "3deg" }}>
+          <div
+            className="flatlay-item"
+            style={{ left: "78%", top: "65%", rotate: "3deg" }}
+          >
             <div className="item-clock">🕐 02:47</div>
           </div>
         </div>
 
-        <p className="beat-caption handwritten">Malam adalah waktu kami merekap harapan.</p>
+        <p className="beat-caption handwritten">
+          Malam adalah waktu kami merekap harapan.
+        </p>
       </div>
 
       {/* BRIDGE 4: MUD SPLASHES */}
       <div className="bridge-mud">
-        <div className="mud-splash" style={{ width: "80px", height: "80px", left: "15%", top: "25%" }}></div>
-        <div className="mud-splash" style={{ width: "110px", height: "110px", left: "45%", top: "40%" }}></div>
-        <div className="mud-splash" style={{ width: "95px", height: "95px", left: "72%", top: "30%" }}></div>
-        <div className="mud-splash" style={{ width: "65px", height: "65px", left: "28%", top: "65%" }}></div>
-        <div className="mud-splash" style={{ width: "88px", height: "88px", left: "60%", top: "70%" }}></div>
+        <div
+          className="mud-splash"
+          style={{ width: "80px", height: "80px", left: "15%", top: "25%" }}
+        ></div>
+        <div
+          className="mud-splash"
+          style={{ width: "110px", height: "110px", left: "45%", top: "40%" }}
+        ></div>
+        <div
+          className="mud-splash"
+          style={{ width: "95px", height: "95px", left: "72%", top: "30%" }}
+        ></div>
+        <div
+          className="mud-splash"
+          style={{ width: "65px", height: "65px", left: "28%", top: "65%" }}
+        ></div>
+        <div
+          className="mud-splash"
+          style={{ width: "88px", height: "88px", left: "60%", top: "70%" }}
+        ></div>
       </div>
 
       {/* ============================================
@@ -1822,38 +1988,76 @@ function Journey() {
         <h2 className="beat-title handwritten">Perjalanan Visual</h2>
 
         <div className="journey-collage">
-          <div className="journey-photo" style={{ left: "8%", top: "10%", rotate: "-7deg", width: "280px" }}>
-            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=280&h=320&fit=crop" alt="Jalan becek" />
+          <div
+            className="journey-photo"
+            style={{ left: "8%", top: "10%", rotate: "-7deg", width: "280px" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=280&h=320&fit=crop"
+              alt="Jalan becek"
+            />
             <p className="journey-caption">Jalan becek pagi hari</p>
           </div>
 
-          <div className="journey-photo" style={{ left: "38%", top: "8%", rotate: "4deg", width: "300px" }}>
-            <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=300&h=340&fit=crop" alt="Wawancara" />
+          <div
+            className="journey-photo"
+            style={{ left: "38%", top: "8%", rotate: "4deg", width: "300px" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=300&h=340&fit=crop"
+              alt="Wawancara"
+            />
             <p className="journey-caption">Wawancara dengan warga</p>
           </div>
 
-          <div className="journey-photo" style={{ left: "70%", top: "12%", rotate: "-3deg", width: "260px" }}>
-            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=260&h=300&fit=crop" alt="Tim" />
+          <div
+            className="journey-photo"
+            style={{ left: "70%", top: "12%", rotate: "-3deg", width: "260px" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=260&h=300&fit=crop"
+              alt="Tim"
+            />
             <p className="journey-caption">Tim yang solid</p>
           </div>
 
-          <div className="journey-photo" style={{ left: "12%", top: "52%", rotate: "6deg", width: "270px" }}>
-            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=270&h=310&fit=crop" alt="Diskusi" />
+          <div
+            className="journey-photo"
+            style={{ left: "12%", top: "52%", rotate: "6deg", width: "270px" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=270&h=310&fit=crop"
+              alt="Diskusi"
+            />
             <p className="journey-caption">Diskusi strategi</p>
           </div>
 
-          <div className="journey-photo" style={{ left: "42%", top: "55%", rotate: "-5deg", width: "290px" }}>
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=290&h=330&fit=crop" alt="Istirahat" />
+          <div
+            className="journey-photo"
+            style={{ left: "42%", top: "55%", rotate: "-5deg", width: "290px" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=290&h=330&fit=crop"
+              alt="Istirahat"
+            />
             <p className="journey-caption">Istirahat sejenak</p>
           </div>
 
-          <div className="journey-photo" style={{ left: "72%", top: "58%", rotate: "3deg", width: "265px" }}>
-            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=265&h=305&fit=crop" alt="Semangat" />
+          <div
+            className="journey-photo"
+            style={{ left: "72%", top: "58%", rotate: "3deg", width: "265px" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=265&h=305&fit=crop"
+              alt="Semangat"
+            />
             <p className="journey-caption">Semangat pantang menyerah</p>
           </div>
         </div>
 
-        <p className="beat-caption handwritten">Setiap foto adalah saksi perjalanan kami.</p>
+        <p className="beat-caption handwritten">
+          Setiap foto adalah saksi perjalanan kami.
+        </p>
       </div>
 
       {/* ============================================
@@ -1864,33 +2068,69 @@ function Journey() {
         <p className="beat-intro">(Geser foto untuk melihat lebih dekat)</p>
 
         <div className="beat-8-drag-area">
-          <div className="drag-photo" style={{ left: "10%", top: "12%", rotate: "-6deg" }}>
-            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=240&h=280&fit=crop" alt="Jalan rusak" />
+          <div
+            className="drag-photo"
+            style={{ left: "10%", top: "12%", rotate: "-6deg" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=240&h=280&fit=crop"
+              alt="Jalan rusak"
+            />
             <p className="drag-caption">Jalan rusak & becek</p>
           </div>
 
-          <div className="drag-photo" style={{ left: "42%", top: "15%", rotate: "4deg" }}>
-            <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=240&h=280&fit=crop" alt="Cuaca ekstrem" />
+          <div
+            className="drag-photo"
+            style={{ left: "42%", top: "15%", rotate: "4deg" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e?w=240&h=280&fit=crop"
+              alt="Cuaca ekstrem"
+            />
             <p className="drag-caption">Cuaca tak menentu</p>
           </div>
 
-          <div className="drag-photo" style={{ left: "72%", top: "10%", rotate: "-3deg" }}>
-            <img src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?w=240&h=280&fit=crop" alt="Rumah rusak" />
+          <div
+            className="drag-photo"
+            style={{ left: "72%", top: "10%", rotate: "-3deg" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?w=240&h=280&fit=crop"
+              alt="Rumah rusak"
+            />
             <p className="drag-caption">Kondisi rumah parah</p>
           </div>
 
-          <div className="drag-photo" style={{ left: "18%", top: "58%", rotate: "5deg" }}>
-            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=240&h=280&fit=crop" alt="Sinyal lemah" />
+          <div
+            className="drag-photo"
+            style={{ left: "18%", top: "58%", rotate: "5deg" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=240&h=280&fit=crop"
+              alt="Sinyal lemah"
+            />
             <p className="drag-caption">Sinyal hilang-muncul</p>
           </div>
 
-          <div className="drag-photo" style={{ left: "52%", top: "62%", rotate: "-4deg" }}>
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=240&h=280&fit=crop" alt="Lelah" />
+          <div
+            className="drag-photo"
+            style={{ left: "52%", top: "62%", rotate: "-4deg" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=240&h=280&fit=crop"
+              alt="Lelah"
+            />
             <p className="drag-caption">Kelelahan fisik</p>
           </div>
 
-          <div className="drag-photo" style={{ left: "78%", top: "60%", rotate: "3deg" }}>
-            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=240&h=280&fit=crop" alt="Emosional" />
+          <div
+            className="drag-photo"
+            style={{ left: "78%", top: "60%", rotate: "3deg" }}
+          >
+            <img
+              src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=240&h=280&fit=crop"
+              alt="Emosional"
+            />
             <p className="drag-caption">Beban emosional</p>
           </div>
         </div>
@@ -1900,10 +2140,46 @@ function Journey() {
 
       {/* BRIDGE 5: TORN PAPER */}
       <div className="bridge-torn">
-        <div className="torn-piece" style={{ width: "180px", height: "140px", left: "12%", top: "15%", rotate: "-8deg" }}></div>
-        <div className="torn-piece" style={{ width: "200px", height: "120px", left: "45%", top: "25%", rotate: "5deg" }}></div>
-        <div className="torn-piece" style={{ width: "170px", height: "150px", left: "72%", top: "20%", rotate: "-4deg" }}></div>
-        <div className="torn-piece" style={{ width: "160px", height: "130px", left: "28%", top: "60%", rotate: "6deg" }}></div>
+        <div
+          className="torn-piece"
+          style={{
+            width: "180px",
+            height: "140px",
+            left: "12%",
+            top: "15%",
+            rotate: "-8deg",
+          }}
+        ></div>
+        <div
+          className="torn-piece"
+          style={{
+            width: "200px",
+            height: "120px",
+            left: "45%",
+            top: "25%",
+            rotate: "5deg",
+          }}
+        ></div>
+        <div
+          className="torn-piece"
+          style={{
+            width: "170px",
+            height: "150px",
+            left: "72%",
+            top: "20%",
+            rotate: "-4deg",
+          }}
+        ></div>
+        <div
+          className="torn-piece"
+          style={{
+            width: "160px",
+            height: "130px",
+            left: "28%",
+            top: "60%",
+            rotate: "6deg",
+          }}
+        ></div>
       </div>
 
       {/* ============================================
@@ -1913,48 +2189,93 @@ function Journey() {
         <h2 className="beat-title handwritten">Suara dari Lapangan</h2>
 
         <div className="sticky-wall">
-          <div className="voice-sticky yellow" style={{ left: "8%", top: "10%", rotate: "-6deg" }}>
-            <p>"Kami dengar cerita mereka. Kami rasakan kesedihannya. Tapi kami harus tetap profesional."</p>
+          <div
+            className="voice-sticky yellow"
+            style={{ left: "8%", top: "10%", rotate: "-6deg" }}
+          >
+            <p>
+              "Kami dengar cerita mereka. Kami rasakan kesedihannya. Tapi kami
+              harus tetap profesional."
+            </p>
             <span className="sticky-author">— Tim Wawancara</span>
           </div>
 
-          <div className="voice-sticky pink" style={{ left: "40%", top: "8%", rotate: "4deg" }}>
-            <p>"Ada ibu yang bilang: 'Kalian datang membawa harapan.' Itu yang bikin kami kuat."</p>
+          <div
+            className="voice-sticky pink"
+            style={{ left: "40%", top: "8%", rotate: "4deg" }}
+          >
+            <p>
+              "Ada ibu yang bilang: 'Kalian datang membawa harapan.' Itu yang
+              bikin kami kuat."
+            </p>
             <span className="sticky-author">— Enumerator Posko B3</span>
           </div>
 
-          <div className="voice-sticky green" style={{ left: "72%", top: "12%", rotate: "-3deg" }}>
-            <p>"Setiap form yang kami isi = 1 keluarga lebih dekat ke bantuan."</p>
+          <div
+            className="voice-sticky green"
+            style={{ left: "72%", top: "12%", rotate: "-3deg" }}
+          >
+            <p>
+              "Setiap form yang kami isi = 1 keluarga lebih dekat ke bantuan."
+            </p>
             <span className="sticky-author">— Koordinator Lapangan</span>
           </div>
 
-          <div className="voice-sticky blue" style={{ left: "12%", top: "42%", rotate: "5deg" }}>
-            <p>"Pernah nangis diam-diam di toilet posko. Tapi besoknya tetap turun lagi."</p>
+          <div
+            className="voice-sticky blue"
+            style={{ left: "12%", top: "42%", rotate: "5deg" }}
+          >
+            <p>
+              "Pernah nangis diam-diam di toilet posko. Tapi besoknya tetap
+              turun lagi."
+            </p>
             <span className="sticky-author">— Mahasiswa PKL</span>
           </div>
 
-          <div className="voice-sticky orange" style={{ left: "45%", top: "45%", rotate: "-4deg" }}>
-            <p>"Target bukan cuma angka. Target adalah kehidupan yang harus dipulihkan."</p>
+          <div
+            className="voice-sticky orange"
+            style={{ left: "45%", top: "45%", rotate: "-4deg" }}
+          >
+            <p>
+              "Target bukan cuma angka. Target adalah kehidupan yang harus
+              dipulihkan."
+            </p>
             <span className="sticky-author">— Supervisor</span>
           </div>
 
-          <div className="voice-sticky yellow" style={{ left: "75%", top: "48%", rotate: "3deg" }}>
-            <p>"Kami bukan pahlawan. Kami cuma mahasiswa yang diberi amanah."</p>
+          <div
+            className="voice-sticky yellow"
+            style={{ left: "75%", top: "48%", rotate: "3deg" }}
+          >
+            <p>
+              "Kami bukan pahlawan. Kami cuma mahasiswa yang diberi amanah."
+            </p>
             <span className="sticky-author">— Ketua Tim</span>
           </div>
 
-          <div className="voice-sticky pink" style={{ left: "18%", top: "75%", rotate: "-5deg" }}>
-            <p>"Kadang capek bukan dari jalan kaki. Tapi dari liat orang yang kehilangan segalanya tetap tersenyum."</p>
+          <div
+            className="voice-sticky pink"
+            style={{ left: "18%", top: "75%", rotate: "-5deg" }}
+          >
+            <p>
+              "Kadang capek bukan dari jalan kaki. Tapi dari liat orang yang
+              kehilangan segalanya tetap tersenyum."
+            </p>
             <span className="sticky-author">— Field Officer</span>
           </div>
 
-          <div className="voice-sticky green" style={{ left: "52%", top: "78%", rotate: "6deg" }}>
+          <div
+            className="voice-sticky green"
+            style={{ left: "52%", top: "78%", rotate: "6deg" }}
+          >
             <p>"3 minggu ini mengubah cara saya lihat data. Data itu nyawa."</p>
             <span className="sticky-author">— Data Entry</span>
           </div>
         </div>
 
-        <p className="beat-caption handwritten big">Ini bukan hanya pengalaman kerja. Ini pelajaran hidup.</p>
+        <p className="beat-caption handwritten big">
+          Ini bukan hanya pengalaman kerja. Ini pelajaran hidup.
+        </p>
       </div>
 
       {/* ============================================
@@ -1973,32 +2294,44 @@ function Journey() {
 
           <div className="chat-screen">
             <div className="chat-bubble left">
-              <p className="chat-text">Guys, hari ini berat banget. Baru 12 KK 😭</p>
+              <p className="chat-text">
+                Guys, hari ini berat banget. Baru 12 KK 😭
+              </p>
               <span className="chat-time">08:47</span>
             </div>
 
             <div className="chat-bubble right">
-              <p className="chat-text">Sama, jalanan becek parah. Tapi semangat!</p>
+              <p className="chat-text">
+                Sama, jalanan becek parah. Tapi semangat!
+              </p>
               <span className="chat-time">08:50</span>
             </div>
 
             <div className="chat-bubble left">
-              <p className="chat-text">Tablet ku error lagi, ada yang bisa bantu? 🥲</p>
+              <p className="chat-text">
+                Tablet ku error lagi, ada yang bisa bantu? 🥲
+              </p>
               <span className="chat-time">09:15</span>
             </div>
 
             <div className="chat-bubble right">
-              <p className="chat-text">Udah coba restart? Nanti aku bantu pas istirahat</p>
+              <p className="chat-text">
+                Udah coba restart? Nanti aku bantu pas istirahat
+              </p>
               <span className="chat-time">09:18</span>
             </div>
 
             <div className="chat-bubble left">
-              <p className="chat-text">Tadi ketemu ibu2 yg cerita sambil nangis 💔</p>
+              <p className="chat-text">
+                Tadi ketemu ibu2 yg cerita sambil nangis 💔
+              </p>
               <span className="chat-time">11:32</span>
             </div>
 
             <div className="chat-bubble right">
-              <p className="chat-text">Sama... kadang ga tau harus bilang apa</p>
+              <p className="chat-text">
+                Sama... kadang ga tau harus bilang apa
+              </p>
               <span className="chat-time">11:35</span>
             </div>
 
@@ -2008,7 +2341,9 @@ function Journey() {
             </div>
 
             <div className="chat-bubble left">
-              <p className="chat-text">SEMANGAT TEMAN-TEMAN! Kita pasti bisa! 💪</p>
+              <p className="chat-text">
+                SEMANGAT TEMAN-TEMAN! Kita pasti bisa! 💪
+              </p>
               <span className="chat-time">14:22</span>
             </div>
 
@@ -2023,7 +2358,9 @@ function Journey() {
           </div>
         </div>
 
-        <p className="beat-caption handwritten">Grup chat = tempat kami saling menguatkan.</p>
+        <p className="beat-caption handwritten">
+          Grup chat = tempat kami saling menguatkan.
+        </p>
       </div>
 
       {/* ============================================
@@ -2045,7 +2382,10 @@ function Journey() {
               <div className="metric-row">
                 <div className="metric-label">KK Dibuka</div>
                 <div className="progress-bar-container">
-                  <div className="progress-bar-fill green" style={{ width: "91.6%" }}></div>
+                  <div
+                    className="progress-bar-fill green"
+                    style={{ width: "91.6%" }}
+                  ></div>
                 </div>
                 <div className="metric-value">3847 / 4200</div>
               </div>
@@ -2053,7 +2393,10 @@ function Journey() {
               <div className="metric-row">
                 <div className="metric-label">Tersubmit</div>
                 <div className="progress-bar-container">
-                  <div className="progress-bar-fill blue" style={{ width: "86.2%" }}></div>
+                  <div
+                    className="progress-bar-fill blue"
+                    style={{ width: "86.2%" }}
+                  ></div>
                 </div>
                 <div className="metric-value">3621 / 4200</div>
               </div>
@@ -2061,7 +2404,10 @@ function Journey() {
               <div className="metric-row">
                 <div className="metric-label">Ditolak</div>
                 <div className="progress-bar-container">
-                  <div className="progress-bar-fill red" style={{ width: "4.3%" }}></div>
+                  <div
+                    className="progress-bar-fill red"
+                    style={{ width: "4.3%" }}
+                  ></div>
                 </div>
                 <div className="metric-value">182</div>
               </div>
@@ -2069,7 +2415,10 @@ function Journey() {
               <div className="metric-row">
                 <div className="metric-label">Approved</div>
                 <div className="progress-bar-container">
-                  <div className="progress-bar-fill yellow" style={{ width: "81.9%" }}></div>
+                  <div
+                    className="progress-bar-fill yellow"
+                    style={{ width: "81.9%" }}
+                  ></div>
                 </div>
                 <div className="metric-value">3439 / 4200</div>
               </div>
@@ -2176,28 +2525,88 @@ function Journey() {
         <h2 className="beat-title handwritten">3 Minggu yang Bermakna</h2>
 
         <div className="polaroid-pile">
-          <div className="polaroid-card" style={{ left: "50%", top: "45%", transform: "translate(-50%, -50%) rotate(-8deg)", zIndex: 1 }} data-rotation="-8">
-            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=350&h=400&fit=crop" alt="Tim kompak" />
+          <div
+            className="polaroid-card"
+            style={{
+              left: "50%",
+              top: "45%",
+              transform: "translate(-50%, -50%) rotate(-8deg)",
+              zIndex: 1,
+            }}
+            data-rotation="-8"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=350&h=400&fit=crop"
+              alt="Tim kompak"
+            />
             <p className="polaroid-caption">Tim kompak</p>
           </div>
 
-          <div className="polaroid-card" style={{ left: "50%", top: "50%", transform: "translate(-50%, -50%) rotate(5deg)", zIndex: 2 }} data-rotation="5">
-            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=350&h=400&fit=crop" alt="Senyum lelah" />
+          <div
+            className="polaroid-card"
+            style={{
+              left: "50%",
+              top: "50%",
+              transform: "translate(-50%, -50%) rotate(5deg)",
+              zIndex: 2,
+            }}
+            data-rotation="5"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=350&h=400&fit=crop"
+              alt="Senyum lelah"
+            />
             <p className="polaroid-caption">Senyum di tengah lelah</p>
           </div>
 
-          <div className="polaroid-card" style={{ left: "50%", top: "48%", transform: "translate(-50%, -50%) rotate(-3deg)", zIndex: 3 }} data-rotation="-3">
-            <img src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?w=350&h=400&fit=crop" alt="Dokumentasi" />
+          <div
+            className="polaroid-card"
+            style={{
+              left: "50%",
+              top: "48%",
+              transform: "translate(-50%, -50%) rotate(-3deg)",
+              zIndex: 3,
+            }}
+            data-rotation="-3"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?w=350&h=400&fit=crop"
+              alt="Dokumentasi"
+            />
             <p className="polaroid-caption">Dokumentasi bersama</p>
           </div>
 
-          <div className="polaroid-card" style={{ left: "50%", top: "52%", transform: "translate(-50%, -50%) rotate(7deg)", zIndex: 4 }} data-rotation="7">
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=350&h=400&fit=crop" alt="Kerja sama" />
+          <div
+            className="polaroid-card"
+            style={{
+              left: "50%",
+              top: "52%",
+              transform: "translate(-50%, -50%) rotate(7deg)",
+              zIndex: 4,
+            }}
+            data-rotation="7"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=350&h=400&fit=crop"
+              alt="Kerja sama"
+            />
             <p className="polaroid-caption">Kerja sama solid</p>
           </div>
 
-          <div className="polaroid-card" style={{ left: "50%", top: "50%", transform: "translate(-50%, -50%) rotate(-2deg)", zIndex: 5 }} data-rotation="-2">
-            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=350&h=400&fit=crop" alt="Momen haru" />
+          <div
+            className="polaroid-card"
+            style={{
+              left: "50%",
+              top: "50%",
+              transform: "translate(-50%, -50%) rotate(-2deg)",
+              zIndex: 5,
+            }}
+            data-rotation="-2"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=350&h=400&fit=crop"
+              alt="Momen haru"
+            />
             <p className="polaroid-caption">Momen haru</p>
           </div>
         </div>
@@ -2223,10 +2632,17 @@ function Journey() {
           <div className="letter-paper">
             <h3 className="letter-heading">Untuk Indonesia,</h3>
             <p className="letter-content">
-              Sebuah kehormatan bagi kami, 510 mahasiswa Politeknik Statistika STIS, dapat berkontribusi dalam pemulihan negeri ini. Kami telah menyaksikan penderitaan, mendengar tangisan, dan merasakan kekuatan luar biasa dari mereka yang
-              kehilangan segalanya namun tetap bertahan.
+              Sebuah kehormatan bagi kami, 510 mahasiswa Politeknik Statistika
+              STIS, dapat berkontribusi dalam pemulihan negeri ini. Kami telah
+              menyaksikan penderitaan, mendengar tangisan, dan merasakan
+              kekuatan luar biasa dari mereka yang kehilangan segalanya namun
+              tetap bertahan.
             </p>
-            <p className="letter-content">Data yang kami kumpulkan bukan sekadar angka. Ini adalah suara ribuan jiwa yang berharap pada kebijakan yang adil dan pemulihan yang nyata.</p>
+            <p className="letter-content">
+              Data yang kami kumpulkan bukan sekadar angka. Ini adalah suara
+              ribuan jiwa yang berharap pada kebijakan yang adil dan pemulihan
+              yang nyata.
+            </p>
             <div className="letter-signature">
               Salam Hormat,
               <br />
@@ -2259,15 +2675,28 @@ function Journey() {
           </p>
         </div>
 
-        <p className="beat-caption handwritten final">Terima kasih atas pengorbanan kalian.</p>
+        <p className="beat-caption handwritten final">
+          Terima kasih atas pengorbanan kalian.
+        </p>
       </div>
 
-      {/* NAVIGATION
+      {/* NAVIGATION */}
       <div className="story-navigation">
-        <Link to="/" className="nav-btn back">
+        <Link
+          to="/"
+          className="nav-btn back"
+          onClick={() => window.scrollTo(0, 0)}
+        >
           ← Kembali
         </Link>
-      </div> */}
+        <Link
+          to="/findings"
+          className="nav-btn next"
+          onClick={() => window.scrollTo(0, 0)}
+        >
+          Lanjut ke Findings →
+        </Link>
+      </div>
     </div>
   );
 }
