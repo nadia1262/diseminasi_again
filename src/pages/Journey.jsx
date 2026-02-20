@@ -28,6 +28,8 @@ import {
   useDragControls,
   useAnimationFrame,
 } from "framer-motion";
+import { Volume2, VolumeX, Mic, Camera, MapPin } from "lucide-react";
+import { Howl } from "howler";
 import "./Journey.css";
 
 // ─── SPRING PHYSICS PRESETS ───────────────────────────────────────────────────
@@ -1493,49 +1495,184 @@ function DeploymentView() {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// VIEW 5 — DRAGGABLE FLATLAY "AMUNISI TEMPUR"
+// VIEW 5 — INTI LAPANGAN: "MENGETUK PINTU, MEREKAM HARAPAN"
+// Digital Scrapbook Documentary | Scrollytelling | Ambient Audio | Polaroids
 // ═══════════════════════════════════════════════════════════════════════════════
-const GEAR_ITEMS = [
-  { id: "hp",    emoji: "📱", label: "CAPI Device",      desc: "Entry data real-time via aplikasi CAPI BPS",      x: "10%",  y: "12%", rotate: -14 },
-  { id: "boots", emoji: "🥾", label: "Sepatu Boots",     desc: "Menembus lumpur & jalan setapak tak beraspal",    x: "58%",  y: "8%",  rotate: 8   },
-  { id: "rain",  emoji: "🧥", label: "Jas Hujan",        desc: "Setia menemani hujan deras & angin kencang",      x: "18%",  y: "52%", rotate: -6  },
-  { id: "id",    emoji: "🪪", label: "ID Card BPS",      desc: "Legitimasi resmi sebagai enumerator negara",      x: "63%",  y: "48%", rotate: 11  },
-  { id: "map",   emoji: "🗺️",  label: "Peta Blok Sensus",desc: "Navigasi area tugas & batas wilayah pendataan",   x: "38%",  y: "28%", rotate: -3  },
+
+// Ambient soundscape Howl (uses a royalty-free village ambience from freesound proxy)
+// In production, replace src with your actual hosted audio file.
+const createAmbientSound = () => new Howl({
+  src: ["https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"], // placeholder — swap with real village ambience
+  loop: true,
+  volume: 0,
+  html5: true,
+});
+
+// Interview snippet Howl
+const createInterviewSound = () => new Howl({
+  src: ["https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"], // placeholder — swap with real interview clip
+  volume: 0.7,
+  html5: true,
+});
+
+// ── Scrapbook polaroid data ───────────────────────────────────────────────────
+const SCRAPBOOK_POLAROIDS = [
+  {
+    id: "enumerator",
+    src: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&h=480&fit=crop&crop=top",
+    caption: "Tiba di rumah warga — data menanti",
+    label: "📋 Enumerasi",
+    rotate: -4.5,
+    tape: "top-left",
+    hasInterview: true,
+    interviewText: "\"Kami mengetuk pintu, bukan sekadar untuk mengisi formulir — tapi untuk mendengar cerita yang tersembunyi di balik angka.\"",
+  },
+  {
+    id: "warga",
+    src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=480&fit=crop",
+    caption: "Suara warga yang menanti pemulihan",
+    label: "🎙 Wawancara",
+    rotate: 3.2,
+    tape: "top-right",
+    hasInterview: false,
+    interviewText: "",
+  },
+  {
+    id: "data",
+    src: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=480&fit=crop&crop=center",
+    caption: "Realitas direkam dengan presisi",
+    label: "📊 Data",
+    rotate: -2.1,
+    tape: "top-left",
+    hasInterview: false,
+    interviewText: "",
+  },
+  {
+    id: "gang",
+    src: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400&h=480&fit=crop",
+    caption: "Menyusuri tiap gang & lorong kampung",
+    label: "🏘 Lapangan",
+    rotate: 5.8,
+    tape: "top-center",
+    hasInterview: false,
+    interviewText: "",
+  },
 ];
 
-function DraggableGear({ item, containerRef }) {
+// Scrollytelling narration beats
+const NARRATION_BEATS = [
+  { id: "beat1", text: "Data dimulai dari lapangan.", subtext: "Di sini, di depan pintu-pintu yang belum pernah diketuk sebelumnya." },
+  { id: "beat2", text: "Bukan sekadar angka, tapi suara warga yang menanti pemulihan.", subtext: "Setiap jawaban adalah harapan yang dicatat, diukur, diperjuangkan." },
+  { id: "beat3", text: "510 Mahasiswa menyusuri tiap gang, merekam realitas dengan presisi.", subtext: "Selama 21 hari, kami adalah jembatan antara desa dan kebijakan." },
+];
+
+// ── WashiTape component ───────────────────────────────────────────────────────
+function WashiTape({ position = "top-left", color = "#FFD47A" }) {
+  const posStyles = {
+    "top-left":   { top: -10, left: 12, transform: "rotate(-8deg)" },
+    "top-right":  { top: -10, right: 12, transform: "rotate(8deg)" },
+    "top-center": { top: -10, left: "50%", transform: "translateX(-50%) rotate(-3deg)" },
+  };
+  return (
+    <div
+      className="washi-tape"
+      style={{
+        position: "absolute",
+        width: 64,
+        height: 20,
+        background: color,
+        opacity: 0.82,
+        borderRadius: 3,
+        zIndex: 5,
+        ...posStyles[position],
+      }}
+      aria-hidden="true"
+    />
+  );
+}
+
+// ── Polaroid component ────────────────────────────────────────────────────────
+function ScrapbookPolaroid({ polaroid, index, onPlayInterview, isInterviewPlaying }) {
   const [hovered, setHovered] = useState(false);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-12% 0px" });
+
+  const tapeColors = ["#FFD47A", "#f9c0d0", "#b3d9f5", "#c5e8c5"];
 
   return (
     <motion.div
-      className="gear-item"
-      style={{ left: item.x, top: item.y }}
-      drag
-      dragConstraints={containerRef}
-      dragElastic={0.1}
-      dragMomentum={true}
-      initial={{ rotate: item.rotate, scale: 0, opacity: 0 }}
-      whileInView={{ scale: 1, opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ ...SPRING_SNAPPY, delay: Math.random() * 0.5 }}
-      whileDrag={{ scale: 1.14, rotate: 0, zIndex: 20, cursor: "grabbing" }}
-      whileHover={{ scale: 1.07, rotate: 0 }}
+      ref={ref}
+      className="scrap-polaroid-wrap"
+      style={{ "--rotate": `${polaroid.rotate}deg` }}
+      initial={{ opacity: 0, y: 60, rotate: polaroid.rotate * 2 }}
+      animate={isInView ? { opacity: 1, y: 0, rotate: polaroid.rotate } : {}}
+      transition={{ ...SPRING_SOFT, delay: index * 0.18 }}
+      whileHover={{ scale: 1.04, rotate: 0, zIndex: 20 }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      data-cursor="drag"
+      data-cursor="hover"
     >
-      <div className="gear-emoji-big">{item.emoji}</div>
-      <div className="gear-name">{item.label}</div>
+      <WashiTape position={polaroid.tape} color={tapeColors[index % tapeColors.length]} />
+
+      <div className="scrap-polaroid">
+        <div className="scrap-polaroid-img-wrap">
+          <img src={polaroid.src} alt={polaroid.caption} loading="lazy" />
+          {/* Film grain overlay */}
+          <div className="scrap-film-grain" aria-hidden="true" />
+          {/* Inner vignette */}
+          <div className="scrap-polaroid-vignette" aria-hidden="true" />
+
+          {/* Interview hotspot */}
+          {polaroid.hasInterview && (
+            <motion.button
+              className="scrap-interview-btn"
+              onClick={() => onPlayInterview(polaroid.id)}
+              animate={isInterviewPlaying ? { scale: [1, 1.12, 1] } : { scale: 1 }}
+              transition={isInterviewPlaying ? { duration: 1.2, repeat: Infinity } : {}}
+              data-cursor="hover"
+              aria-label="Dengarkan cuplikan wawancara"
+            >
+              <Mic size={14} />
+              <span>{isInterviewPlaying ? "Sedang Diputar…" : "Dengarkan"}</span>
+              <AnimatePresence>
+                {isInterviewPlaying && (
+                  <motion.div
+                    className="scrap-interview-wave"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.5 }}
+                  >
+                    {[0, 1, 2, 3].map(i => (
+                      <motion.span
+                        key={i}
+                        animate={{ scaleY: [1, 2.4, 1] }}
+                        transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.12, ease: "easeInOut" }}
+                      />
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
+          )}
+        </div>
+
+        <div className="scrap-polaroid-footer">
+          <span className="scrap-polaroid-label">{polaroid.label}</span>
+          <p className="scrap-polaroid-caption">{polaroid.caption}</p>
+        </div>
+      </div>
+
+      {/* Hover quote overlay */}
       <AnimatePresence>
-        {hovered && (
+        {hovered && polaroid.hasInterview && (
           <motion.div
-            className="gear-tooltip"
-            initial={{ opacity: 0, y: 8, scale: 0.92 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.92 }}
-            transition={SPRING_SNAPPY}
+            className="scrap-polaroid-quote"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.3 }}
           >
-            {item.desc}
+            {polaroid.interviewText}
           </motion.div>
         )}
       </AnimatePresence>
@@ -1543,30 +1680,285 @@ function DraggableGear({ item, containerRef }) {
   );
 }
 
-function FlatLayView() {
-  const containerRef = useRef(null);
+// ── Scrollytelling narration panel ───────────────────────────────────────────
+function NarrationBeats({ scrollProgress }) {
+  const beat1Opacity = useTransform(scrollProgress, [0.05, 0.2, 0.32, 0.44], [0, 1, 1, 0]);
+  const beat1Y       = useTransform(scrollProgress, [0.05, 0.2], ["40px", "0px"]);
+
+  const beat2Opacity = useTransform(scrollProgress, [0.38, 0.5, 0.62, 0.72], [0, 1, 1, 0]);
+  const beat2Y       = useTransform(scrollProgress, [0.38, 0.5], ["40px", "0px"]);
+
+  const beat3Opacity = useTransform(scrollProgress, [0.66, 0.78, 0.9, 1.0], [0, 1, 1, 0]);
+  const beat3Y       = useTransform(scrollProgress, [0.66, 0.78], ["40px", "0px"]);
+
+  const beats = [
+    { opacity: beat1Opacity, y: beat1Y, ...NARRATION_BEATS[0] },
+    { opacity: beat2Opacity, y: beat2Y, ...NARRATION_BEATS[1] },
+    { opacity: beat3Opacity, y: beat3Y, ...NARRATION_BEATS[2] },
+  ];
 
   return (
-    <section className="view view-5" id="flatlay">
-      <div className="view-5-header">
-        <motion.span className="tag" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
-          Tahap 4 · Perlengkapan
-        </motion.span>
-        <motion.h2 className="view-headline" variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          Amunisi Tempur
-        </motion.h2>
-        <motion.p className="view-sub" variants={fadeUp} custom={1} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          Drag item untuk pindahkan. Hover untuk baca deskripsi.
-        </motion.p>
-      </div>
+    <div className="scrap-narration-wrap">
+      {beats.map(beat => (
+        <motion.div
+          key={beat.id}
+          className="scrap-narration-beat"
+          style={{ opacity: beat.opacity, y: beat.y }}
+        >
+          <div className="scrap-narration-line" />
+          <p className="scrap-narration-main">{beat.text}</p>
+          <p className="scrap-narration-sub">{beat.subtext}</p>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
 
-      <div className="flatlay-stage" ref={containerRef}>
-        <div className="flatlay-bg-text">STIS R3P 2026</div>
-        <div className="flatlay-grid-lines" aria-hidden="true" />
-        {GEAR_ITEMS.map(item => (
-          <DraggableGear key={item.id} item={item} containerRef={containerRef} />
-        ))}
-      </div>
+// ── Main IntiLapanganView ─────────────────────────────────────────────────────
+function IntiLapanganView() {
+  const sectionRef   = useRef(null);
+  const bgRef        = useRef(null);
+  const ambientRef   = useRef(null);
+  const interviewRef = useRef(null);
+  const [soundOn, setSoundOn]                 = useState(false);
+  const [interviewActive, setInterviewActive] = useState(null); // polaroid id
+  const wasInView                             = useRef(false);
+
+  // Scroll tracking
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Parallax for background image
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-18%", "18%"]);
+
+  // Overall section opacity for fade-in/out
+  const sectionOpacity = useTransform(scrollYProgress, [0, 0.06, 0.94, 1], [0, 1, 1, 0]);
+
+  // Scroll progress for scrollytelling (pinned region 20%–80% of section scroll)
+  const pinProgress = useTransform(scrollYProgress, [0.05, 0.95], [0, 1]);
+
+  // ── Ambient sound management ──────────────────────────────────────────────
+  useEffect(() => {
+    ambientRef.current   = createAmbientSound();
+    interviewRef.current = createInterviewSound();
+
+    return () => {
+      ambientRef.current?.unload();
+      interviewRef.current?.unload();
+    };
+  }, []);
+
+  // Fade ambient in/out as section enters/exits viewport
+  useEffect(() => {
+    return scrollYProgress.on("change", (v) => {
+      const inView = v > 0.02 && v < 0.98;
+      if (inView && !wasInView.current) {
+        wasInView.current = true;
+        if (soundOn) {
+          ambientRef.current?.play();
+          ambientRef.current?.fade(0, 0.35, 1200);
+        }
+      } else if (!inView && wasInView.current) {
+        wasInView.current = false;
+        ambientRef.current?.fade(ambientRef.current.volume(), 0, 800);
+        setTimeout(() => ambientRef.current?.stop(), 850);
+        // also stop interview
+        setInterviewActive(null);
+        interviewRef.current?.stop();
+      }
+    });
+  }, [scrollYProgress, soundOn]);
+
+  const toggleSound = () => {
+    setSoundOn(prev => {
+      const next = !prev;
+      if (next) {
+        if (wasInView.current) {
+          ambientRef.current?.play();
+          ambientRef.current?.fade(0, 0.35, 1000);
+        }
+      } else {
+        ambientRef.current?.fade(ambientRef.current.volume?.() ?? 0.35, 0, 600);
+        setTimeout(() => ambientRef.current?.stop(), 650);
+      }
+      return next;
+    });
+  };
+
+  const handlePlayInterview = (id) => {
+    if (interviewActive === id) {
+      interviewRef.current?.stop();
+      setInterviewActive(null);
+    } else {
+      interviewRef.current?.stop();
+      interviewRef.current?.play();
+      setInterviewActive(id);
+      // Auto-stop after 15s
+      setTimeout(() => setInterviewActive(null), 15000);
+    }
+  };
+
+  return (
+    <section className="view view-5 view-inti" ref={sectionRef} id="flatlay">
+
+      {/* ── Film grain & vignette overlays ── */}
+      <div className="scrap-grain" aria-hidden="true" />
+      <div className="scrap-vignette" aria-hidden="true" />
+
+      {/* ── Parallax background ── */}
+      <motion.div
+        className="scrap-bg-parallax"
+        ref={bgRef}
+        style={{
+          y: bgY,
+          backgroundImage: "url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1800&fit=crop')",
+        }}
+      />
+      <div className="scrap-bg-overlay" />
+
+      {/* ── Sound toggle ── */}
+      <motion.button
+        className="scrap-sound-toggle"
+        onClick={toggleSound}
+        initial={{ opacity: 0, x: 20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ ...SPRING_MEDIUM, delay: 0.5 }}
+        viewport={{ once: true }}
+        whileHover={{ scale: 1.08 }}
+        data-cursor="hover"
+        aria-label={soundOn ? "Matikan suara" : "Nyalakan suara"}
+      >
+        {soundOn ? <Volume2 size={16} /> : <VolumeX size={16} />}
+        <span>{soundOn ? "Suara ON" : "Aktifkan Suara"}</span>
+        {soundOn && (
+          <motion.div
+            className="scrap-sound-wave"
+            initial={false}
+          >
+            {[0, 1, 2].map(i => (
+              <motion.span
+                key={i}
+                animate={{ scaleY: [1, 2.2, 1] }}
+                transition={{ duration: 0.7, repeat: Infinity, delay: i * 0.18, ease: "easeInOut" }}
+              />
+            ))}
+          </motion.div>
+        )}
+      </motion.button>
+
+      {/* ── Main content ── */}
+      <motion.div className="scrap-inner" style={{ opacity: sectionOpacity }}>
+
+        {/* Section header */}
+        <motion.div
+          className="scrap-header"
+          initial={{ opacity: 0, y: 36 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={SPRING_MEDIUM}
+          viewport={{ once: true }}
+        >
+          <span className="tag">Tahap 5 · Inti Lapangan</span>
+          <h2 className="view-headline light scrap-headline">
+            Mengetuk Pintu,<br />
+            <span className="scrap-headline-accent">Merekam Harapan</span>
+          </h2>
+          <div className="scrap-meta-row">
+            {[
+              { icon: <MapPin size={13} />, text: "3 Provinsi, ratusan desa" },
+              { icon: <Camera size={13} />, text: "510 enumerator di lapangan" },
+              { icon: <Mic size={13} />,    text: "Ribuan warga diwawancarai" },
+            ].map((m, i) => (
+              <motion.div
+                key={i}
+                className="scrap-meta-chip"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ ...SPRING_MEDIUM, delay: 0.1 + i * 0.1 }}
+                viewport={{ once: true }}
+              >
+                {m.icon}
+                <span>{m.text}</span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* ── Scrapbook polaroid layout ── */}
+        <div className="scrap-board">
+          {/* Decorative notebook lines */}
+          <div className="scrap-notebook-lines" aria-hidden="true" />
+
+          {/* Sticker / stamp decoration */}
+          <div className="scrap-stamp" aria-hidden="true">
+            <span className="scrap-stamp-text mono">PKL 65</span>
+            <span className="scrap-stamp-sub mono">STIS · 2026</span>
+          </div>
+
+          {/* Polaroid grid */}
+          <div className="scrap-polaroid-grid">
+            {SCRAPBOOK_POLAROIDS.map((p, i) => (
+              <ScrapbookPolaroid
+                key={p.id}
+                polaroid={p}
+                index={i}
+                onPlayInterview={handlePlayInterview}
+                isInterviewPlaying={interviewActive === p.id}
+              />
+            ))}
+          </div>
+
+          {/* Handwritten note annotation */}
+          <motion.div
+            className="scrap-handnote"
+            initial={{ opacity: 0, rotate: -6, y: 20 }}
+            whileInView={{ opacity: 1, rotate: -3, y: 0 }}
+            transition={{ ...SPRING_SOFT, delay: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <p className="scrap-handnote-text">
+              "Setiap pintu yang diketuk<br />adalah satu harapan yang dicatat."
+            </p>
+            <span className="scrap-handnote-author">— Enumerator, Jan 2026</span>
+          </motion.div>
+        </div>
+
+        {/* ── Scrollytelling narration ── */}
+        <NarrationBeats scrollProgress={pinProgress} />
+
+        {/* ── Stat highlight ── */}
+        <motion.div
+          className="scrap-stats-row"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-8% 0px" }}
+          variants={{ visible: { transition: { staggerChildren: 0.14, delayChildren: 0.1 } } }}
+        >
+          {[
+            { num: "510", label: "Mahasiswa turun ke lapangan", icon: "👣" },
+            { num: "21",  label: "Hari pendataan intensif",     icon: "📅" },
+            { num: "∞",   label: "Cerita yang layak didengar",  icon: "🎙" },
+          ].map((s, i) => (
+            <motion.div
+              key={i}
+              className="scrap-stat-card"
+              variants={{
+                hidden: { opacity: 0, y: 28, scale: 0.92 },
+                visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.65, ease: EASE_OUT } },
+              }}
+              whileHover={{ y: -4, scale: 1.03 }}
+              transition={SPRING_SOFT}
+              data-cursor="hover"
+            >
+              <span className="scrap-stat-icon">{s.icon}</span>
+              <span className="scrap-stat-num mono">{s.num}</span>
+              <span className="scrap-stat-label">{s.label}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+
+      </motion.div>
     </section>
   );
 }
@@ -1912,7 +2304,7 @@ function Journey() {
           <PinnedGallery />
           <BriefingView />
           <DeploymentView />
-          <FlatLayView />
+          <IntiLapanganView />
           <DeepParallaxView />
           <PolaroidCarousel />
 

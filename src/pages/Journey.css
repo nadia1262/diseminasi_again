@@ -1447,109 +1447,526 @@ a { cursor: none; }
 .legend-count { font-size: 0.73rem; color: var(--text-mid); font-family: var(--font-m); }
 
 /* ═══════════════════════════════════════════════════════════════
-   VIEW 5 — DRAGGABLE FLAT LAY "AMUNISI TEMPUR"
+   VIEW 5 — INTI LAPANGAN: "MENGETUK PINTU, MEREKAM HARAPAN"
+   Digital Scrapbook Documentary | Scrollytelling | Polaroids
 ════════════════════════════════════════════════════════════════ */
-.view-5 {
-  background: var(--cream);
-  padding: var(--pad-y) var(--pad-x) 60px;
-  min-height: 100vh;
-}
 
-.view-5-header { max-width: 600px; margin-bottom: 40px; }
-
-.flatlay-stage {
+/* ── Section base ── */
+.view-inti {
   position: relative;
-  width: 100%;
-  height: 540px;
-  background: var(--white);
-  border-radius: 24px;
-  border: 2px dashed rgba(0,33,71,0.1);
+  min-height: 260vh;              /* tall for scrollytelling pinning */
+  background: #12100e;
   overflow: hidden;
-  box-shadow: inset 0 2px 24px rgba(0,33,71,0.04), var(--shadow-sm);
 }
 
-/* Grid lines on flatlay stage */
-.flatlay-grid-lines {
+/* ── Background parallax image ── */
+.scrap-bg-parallax {
+  position: absolute;
+  inset: -30%;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+  filter: brightness(0.22) saturate(0.5) sepia(0.3);
+}
+
+.scrap-bg-overlay {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(0,33,71,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,33,71,0.03) 1px, transparent 1px);
-  background-size: 48px 48px;
-  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0, 20, 8, 0.7) 0%, transparent 70%),
+    linear-gradient(180deg, rgba(18,16,14,0.88) 0%, rgba(18,16,14,0.55) 50%, rgba(18,16,14,0.92) 100%);
+  z-index: 1;
 }
 
-.flatlay-bg-text {
+/* ── Film grain ── */
+.scrap-grain {
   position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--font-h);
-  font-weight: 900;
-  font-size: clamp(3rem, 6vw, 5rem);
-  color: rgba(0,33,71,0.035);
-  letter-spacing: -0.04em;
-  white-space: nowrap;
-  user-select: none;
+  inset: 0;
+  z-index: 2;
   pointer-events: none;
+  opacity: 0.09;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+  mix-blend-mode: overlay;
+  animation: grainShift 0.18s steps(1) infinite;
 }
 
-.gear-item {
+@keyframes grainShift {
+  0%  { background-position: 0 0; }
+  25% { background-position: -8px 12px; }
+  50% { background-position: 14px -6px; }
+  75% { background-position: -12px 8px; }
+}
+
+/* ── Vignette ── */
+.scrap-vignette {
   position: absolute;
-  display: flex; flex-direction: column;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 100% 100% at 50% 50%, transparent 40%, rgba(10, 8, 6, 0.72) 100%);
+}
+
+/* ── Sound toggle button ── */
+.scrap-sound-toggle {
+  position: sticky;
+  top: 18px;
+  float: right;
+  margin-right: var(--pad-x);
+  z-index: 50;
+  display: flex;
   align-items: center;
   gap: 8px;
-  cursor: grab;
-  user-select: none;
-  will-change: transform;
-}
-.gear-item:active { cursor: grabbing; }
-
-.gear-emoji-big {
-  font-size: 3.8rem;
-  filter: drop-shadow(0 6px 16px rgba(0,33,71,0.18));
-  transition: transform 0.2s ease;
-}
-
-.gear-name {
-  font-family: var(--font-h);
-  font-size: 0.7rem;
-  font-weight: 800;
-  color: var(--navy);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  background: var(--white);
-  padding: 4px 12px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.16);
+  color: rgba(255,255,255,0.82);
+  font-family: var(--font-m);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 8px 16px;
   border-radius: 20px;
-  border: 1.5px solid var(--border);
-  box-shadow: var(--shadow-sm);
-  white-space: nowrap;
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+.scrap-sound-toggle:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,200,0,0.4);
+  color: #FFD47A;
 }
 
-.gear-tooltip {
+.scrap-sound-wave {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 14px;
+}
+.scrap-sound-wave span {
+  display: block;
+  width: 2px;
+  height: 100%;
+  background: #FFD47A;
+  border-radius: 2px;
+  transform-origin: bottom;
+}
+
+/* ── Inner layout ── */
+.scrap-inner {
+  position: relative;
+  z-index: 10;
+  padding: var(--pad-y) var(--pad-x);
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* ── Header ── */
+.scrap-header {
+  margin-bottom: 56px;
+  max-width: 680px;
+}
+
+.scrap-headline {
+  font-size: clamp(2.4rem, 5vw, 4rem) !important;
+  margin-bottom: 28px;
+  color: var(--white) !important;
+}
+
+.scrap-headline-accent {
+  color: #FFD47A;
+  text-shadow: 0 0 40px rgba(255, 212, 122, 0.35);
+}
+
+.scrap-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.scrap-meta-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 20px;
+  color: rgba(255,255,255,0.7);
+  font-family: var(--font-m);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(8px);
+}
+
+/* ── Scrapbook board ── */
+.scrap-board {
+  position: relative;
+  background: #f4ede0;          /* warm cream like old paper */
+  border-radius: 6px;
+  padding: 52px 40px 44px;
+  box-shadow:
+    0 4px 2px rgba(0,0,0,0.12),
+    0 12px 48px rgba(0,0,0,0.35),
+    inset 0 0 0 1px rgba(0,0,0,0.08);
+  overflow: visible;
+  /* Aged paper texture via repeating gradient */
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(180,155,110,0.1) 27px, rgba(180,155,110,0.1) 28px),
+    linear-gradient(135deg, #f4ede0 0%, #ece4d0 40%, #f0e8d8 70%, #f7f0e4 100%);
+}
+
+/* Notebook horizontal lines */
+.scrap-notebook-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(160,140,100,0.18) 27px, rgba(160,140,100,0.18) 28px);
+  border-radius: 6px;
+}
+
+/* Red margin line like a notebook */
+.scrap-board::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 64px;
+  width: 1.5px;
+  background: rgba(220, 90, 90, 0.28);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* ── Washi tape (rendered inline via component) ── */
+.washi-tape {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.14);
+}
+
+/* ── Stamp decoration ── */
+.scrap-stamp {
+  position: absolute;
+  top: 20px; right: 28px;
+  border: 2.5px solid rgba(0,33,71,0.35);
+  padding: 8px 16px;
+  transform: rotate(6deg);
+  display: flex; flex-direction: column;
+  align-items: center;
+  border-radius: 4px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.scrap-stamp-text {
+  font-family: var(--font-m);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0.1em;
+}
+.scrap-stamp-sub {
+  font-family: var(--font-m);
+  font-size: 0.58rem;
+  color: var(--navy);
+  letter-spacing: 0.12em;
+  opacity: 0.7;
+}
+
+/* ── Polaroid grid ── */
+.scrap-polaroid-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px 20px;
+  padding: 24px 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Individual polaroid wrapper ── */
+.scrap-polaroid-wrap {
+  position: relative;
+  cursor: pointer;
+  will-change: transform;
+  /* organic rotation driven via CSS var --rotate */
+  transform: rotate(var(--rotate, 0deg));
+}
+
+/* ── Polaroid card ── */
+.scrap-polaroid {
+  background: #fffdf6;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.1),
+    0 8px 28px rgba(0,0,0,0.2),
+    0 1px 0 rgba(255,255,255,0.9) inset;
+  display: flex; flex-direction: column;
+  border-radius: 2px;
+  overflow: visible;
+}
+
+.scrap-polaroid-img-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 116%;               /* 4:4.5 portrait ratio */
+  overflow: hidden;
+  background: #c8bfb5;
+}
+
+.scrap-polaroid-img-wrap img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Film grain on polaroid image */
+.scrap-film-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.14;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 120px 120px;
+  mix-blend-mode: multiply;
+}
+
+/* Inner vignette on polaroid */
+.scrap-polaroid-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background: radial-gradient(ellipse 90% 90% at 50% 50%, transparent 45%, rgba(0,0,0,0.38) 100%);
+}
+
+/* ── Interview button (hotspot) ── */
+.scrap-interview-btn {
+  position: absolute;
+  bottom: 12px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(0,0,0,0.72);
+  color: rgba(255,255,255,0.92);
+  border: 1px solid rgba(255,255,255,0.2);
+  font-family: var(--font-m);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.scrap-interview-btn:hover {
+  background: rgba(255,200,0,0.2);
+  border-color: rgba(255,200,0,0.5);
+  color: #FFD47A;
+}
+
+.scrap-interview-wave {
+  display: flex; align-items: center; gap: 2px; height: 12px;
+}
+.scrap-interview-wave span {
+  display: block; width: 2px; height: 100%;
+  background: #FFD47A; border-radius: 2px;
+  transform-origin: center;
+}
+
+/* ── Polaroid footer ── */
+.scrap-polaroid-footer {
+  padding: 12px 14px 14px;
+  background: #fffdf6;
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.scrap-polaroid-label {
+  font-family: var(--font-m);
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.scrap-polaroid-caption {
+  font-family: var(--font-h);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ── Hover quote overlay ── */
+.scrap-polaroid-quote {
   position: absolute;
   bottom: calc(100% + 14px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--navy);
-  color: rgba(255,255,255,0.9);
-  font-size: 0.7rem;
-  line-height: 1.55;
-  padding: 9px 14px;
+  left: 50%; transform: translateX(-50%);
+  background: rgba(0,5,20,0.88);
+  color: rgba(255,255,255,0.88);
+  font-family: var(--font-b);
+  font-style: italic;
+  font-size: 0.72rem;
+  line-height: 1.6;
+  padding: 12px 16px;
   border-radius: 10px;
-  max-width: 200px;
+  max-width: 240px;
   text-align: center;
   white-space: normal;
   pointer-events: none;
-  z-index: 30;
-  box-shadow: 0 8px 24px rgba(0,33,71,0.25);
+  z-index: 40;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.1);
 }
-.gear-tooltip::after {
+.scrap-polaroid-quote::after {
   content: '';
   position: absolute;
   top: 100%; left: 50%;
   transform: translateX(-50%);
-  border: 6px solid transparent;
-  border-top-color: var(--navy);
+  border: 7px solid transparent;
+  border-top-color: rgba(0,5,20,0.88);
+}
+
+/* ── Hand-written note ── */
+.scrap-handnote {
+  position: absolute;
+  bottom: -20px; right: -20px;
+  background: #fff9c4;
+  padding: 18px 22px;
+  border-radius: 2px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.18), 0 1px 0 rgba(255,255,255,0.8) inset;
+  max-width: 220px;
+  z-index: 5;
+}
+
+.scrap-handnote-text {
+  font-family: 'Caveat', 'Segoe Script', cursive, var(--font-b);
+  font-size: clamp(0.78rem, 1.2vw, 0.95rem);
+  color: #3a2a0a;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.scrap-handnote-author {
+  font-family: var(--font-m);
+  font-size: 0.6rem;
+  color: rgba(58,42,10,0.55);
+  letter-spacing: 0.07em;
+}
+
+/* ── Scrollytelling narration ── */
+.scrap-narration-wrap {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0;
+  margin-top: 80px;
+}
+
+.scrap-narration-beat {
+  position: absolute;
+  top: 50%; left: 0;
+  transform: translateY(-50%);
+  max-width: 640px;
+  will-change: opacity, transform;
+}
+
+.scrap-narration-line {
+  width: 48px; height: 3px;
+  background: linear-gradient(90deg, #FFD47A, rgba(255,212,122,0));
+  margin-bottom: 18px;
+  border-radius: 4px;
+}
+
+.scrap-narration-main {
+  font-family: var(--font-h);
+  font-weight: 900;
+  font-size: clamp(1.7rem, 3.5vw, 2.8rem);
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+
+.scrap-narration-sub {
+  font-family: var(--font-b);
+  font-size: clamp(0.88rem, 1.4vw, 1.05rem);
+  color: rgba(255,255,255,0.6);
+  line-height: 1.75;
+  font-style: italic;
+}
+
+/* ── Stats row ── */
+.scrap-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 80px;
+}
+
+.scrap-stat-card {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
+  padding: 28px 20px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: border-color 0.25s ease;
+}
+.scrap-stat-card:hover {
+  border-color: rgba(255,212,122,0.35);
+}
+
+.scrap-stat-icon { font-size: 2rem; }
+.scrap-stat-num  {
+  font-family: var(--font-m);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: #FFD47A;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.scrap-stat-label {
+  font-family: var(--font-b);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.4;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .scrap-polaroid-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
+  .scrap-stats-row { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .scrap-handnote { bottom: -50px; right: 0; }
+}
+
+@media (max-width: 768px) {
+  .scrap-board { padding: 40px 20px 36px; }
+  .scrap-board::before { left: 36px; }
+  .scrap-polaroid-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; }
+  .scrap-narration-main { font-size: 1.5rem; }
+  .scrap-stats-row { grid-template-columns: 1fr; gap: 12px; }
+  .scrap-handnote { position: relative; bottom: auto; right: auto; margin-top: 24px; max-width: 100%; }
+  .scrap-sound-toggle { top: 12px; margin-right: 16px; }
+}
+
+@media (max-width: 480px) {
+  .scrap-polaroid-grid { grid-template-columns: 1fr; max-width: 260px; margin: 0 auto; }
+  .scrap-narration-main { font-size: 1.3rem; }
 }
 
 /* ═══════════════════════════════════════════════════════════════
